@@ -4262,6 +4262,11 @@ public class Game implements XMLSaving {
 		return Main.getProperties().hasValue(PropertyValue.penetrationLimitations);
 	}
 
+	//should return true if ANY virginity is enabled
+	public boolean isVirginityEnabled() {
+		return Main.getProperties().hasValue(PropertyValue.virginContent);
+	}
+
 	//calling these methods separately allows for easier implementation of separate settings if someone wants to program that
 	public boolean isVaginalVirginityEnabled() {
 		return Main.getProperties().hasValue(PropertyValue.virginContent);

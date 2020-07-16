@@ -5071,6 +5071,13 @@ public class MainControllerInitMethod {
 				// Counter:
 
 				for(TattooCounterType counterType : TattooCounterType.values()) {
+					if ((!Main.game.isAnalVirginityEnabled() && counterType == TattooCounterType.VIRGINITIES_TAKEN_ANAL)
+						|| (!Main.game.isOralVirginityEnabled() && counterType == TattooCounterType.VIRGINITIES_TAKEN_ORAL)
+						|| (!Main.game.isPenileVirginityEnabled() && counterType == TattooCounterType.VIRGINITIES_TAKEN_PENIS)
+						|| (!Main.game.isVirginityEnabled() && counterType == TattooCounterType.VIRGINITIES_TAKEN_TOTAL)
+						|| (!Main.game.isVaginalVirginityEnabled() && counterType == TattooCounterType.VIRGINITIES_TAKEN_VAGINAL)){
+						continue;
+					}
 					id = "TATTOO_COUNTER_TYPE_"+counterType.toString();
 					if (((EventTarget) MainController.document.getElementById(id)) != null) {
 						((EventTarget) MainController.document.getElementById(id)).addEventListener("click", e -> {

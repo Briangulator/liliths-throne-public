@@ -3315,7 +3315,8 @@ public class Sex {
 			if(penetrationType == SexAreaPenetration.PENIS) {
 				if(characterPenetrating.isPenisVirgin()
 						&& characterPenetrating.hasPenisIgnoreDildo()
-						&& actualOrifice.isInternalOrifice()) {
+						&& actualOrifice.isInternalOrifice()
+						&& Main.game.isPenileVirginityEnabled()) {
 					penileVirginityLoss = characterPenetrating.getVirginityLossPenetrationDescription(characterPenetrated, SexAreaPenetration.PENIS, actualOrifice);
 					if(characterPenetrated.hasFetish(Fetish.FETISH_DEFLOWERING)) {
 						characterPenetrated.incrementExperience(Fetish.getExperienceGainFromTakingOtherVirginity(characterPenetrated), true);

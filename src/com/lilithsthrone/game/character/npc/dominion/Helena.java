@@ -131,7 +131,9 @@ public class Helena extends NPC {
 		}
 		if(Main.isVersionOlderThan(Game.loadingVersion, "0.3.6.9")) {
 			this.clearFetishes();
-			this.addFetish(Fetish.FETISH_PURE_VIRGIN);
+			if(Main.game.isVaginalVirginityEnabled()) {
+				this.addFetish(Fetish.FETISH_PURE_VIRGIN);
+			}
 			this.resetPerksMap(true, false);
 			this.setAttribute(Attribute.MAJOR_CORRUPTION, 0);
 			this.setSkinCovering(new Covering(BodyCoveringType.HUMAN, PresetColour.SKIN_PALE), true);
@@ -174,8 +176,10 @@ public class Helena extends NPC {
 			this.setSexualOrientation(SexualOrientation.AMBIPHILIC);
 			
 			this.setHistory(Occupation.NPC_HARPY_MATRIARCH);
-			
-			this.addFetish(Fetish.FETISH_PURE_VIRGIN);
+
+			if(Main.game.isVaginalVirginityEnabled()) {
+				this.addFetish(Fetish.FETISH_PURE_VIRGIN);
+			}
 			this.setFetishDesire(Fetish.FETISH_KINK_RECEIVING, FetishDesire.THREE_LIKE);
 		}
 		
