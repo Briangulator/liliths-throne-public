@@ -7208,7 +7208,7 @@ public abstract class GameCharacter implements XMLSaving {
 					partnerCondom = partnerPresent && partner.isWearingCondom();
 					if(performingArea.isOrifice() && ((SexAreaOrifice)performingArea).isInternalOrifice()) {
 						if(partnerPresent) {
-							if(partner.isPenisVirgin() && partner.hasPenisIgnoreDildo()) {
+							if(partner.isPenisVirgin() && partner.hasPenisIgnoreDildo() && Main.game.isPenileVirginityEnabled()) {
 								partner.setVirginityLoss(partnerSexType, this, this.getLostVirginityDescriptor());
 								partner.setPenisVirgin(false);
 								if(descriptionNeeded) {
@@ -7387,7 +7387,7 @@ public abstract class GameCharacter implements XMLSaving {
 					List<InventorySlot> slotsDirtied = new ArrayList<>();
 					switch(((SexAreaOrifice)performingArea)) {
 						case ANUS:
-							if(this.isAssVirgin()) {
+							if(this.isAssVirgin() && Main.game.isAnalVirginityEnabled()) {
 								this.setAssVirgin(false);
 								if(descriptionNeeded) {
 									sexDescriptionSB.append(UtilText.parse(this, "<p class='centre noPad'>[style.italicsTerrible([npc.Name] lost [npc.her] anal virginity!)]</p>"));

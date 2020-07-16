@@ -134,7 +134,7 @@ public class TailVagina {
 							" [npc2.Name] [npc2.moanVerb] in delight as [npc2.she] [npc2.verb(feel)] [npc.namePos] [npc.tail] stimulating [npc.her] [npc.vagina+], and [npc2.verb(buck)] [npc2.her] [npc2.hips+] out in response."));
 					break;
 				case SUB_RESISTING:
-					if(Main.sex.getCharacterTargetedForSexAction(this).isVaginaVirgin()) {
+					if(Main.sex.getCharacterTargetedForSexAction(this).isVaginaVirgin() && Main.game.isVaginalVirginityEnabled()) {
 						UtilText.nodeContentSB.append(UtilText.returnStringAtRandom(
 								" [npc2.A_sob+] bursts out from between [npc2.namePos] [npc2.lips+] at the thought of what's about to happen, [npc2.speech(No! Don't! Please! I-I'm a virgin! [npc2.name] can't do this!)]",
 

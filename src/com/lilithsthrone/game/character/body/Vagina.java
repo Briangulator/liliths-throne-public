@@ -216,18 +216,23 @@ public class Vagina implements BodyPartInterface {
 						+ " As [npc.her] transformation finally comes to an end, [npc.namePos] suddenly [npc.verb(become)] aware of the fact that [npc.her] new cunt is already soaking wet from arousal, "
 							+ "causing [npc.herHim] to let out one final, sensual [npc.moan]."
 						+ "<br/>"));
-			
-			if(owner.isVaginaVirgin()) {
-				UtilText.transformationContentSB.append(UtilText.parse(owner,
+
+			if(Main.game.isVaginalVirginityEnabled()) {
+				if (owner.isVaginaVirgin()) {
+					UtilText.transformationContentSB.append(UtilText.parse(owner,
 						"[npc.Name] now [npc.has] a [style.colourExcellent(virgin)] [style.boldTfSex(vagina)], complete with an [style.colourExcellent(unbroken hymen)]!"));
+				} else {
+					UtilText.transformationContentSB.append(UtilText.parse(owner,
+						"[npc.Name] now [npc.has] a new [style.boldTfSex(vagina)], and although [npc.she] can't consider [npc.herself] a virgin, [npc.she] at least [npc.has] an [style.colourExcellent(unbroken hymen)]!"));
+				}
 			} else {
 				UtilText.transformationContentSB.append(UtilText.parse(owner,
-						"[npc.Name] now [npc.has] a new [style.boldTfSex(vagina)], and although [npc.she] can't consider [npc.herself] a virgin, [npc.she] at least [npc.has] an [style.colourExcellent(unbroken hymen)]!"));
+						"[npc.Name] now [npc.has] a [style.boldTfSex(vagina)]!"));
 			}
 					
 			UtilText.transformationContentSB.append("</p>");
 				
-			if(owner.hasFetish(Fetish.FETISH_PURE_VIRGIN)) {
+			if(owner.hasFetish(Fetish.FETISH_PURE_VIRGIN) && !Main.game.isVaginalVirginityEnabled()) {
 				if(owner.isVaginaVirgin()) {
 					UtilText.transformationContentSB.append(UtilText.parse(owner,
 							"<p style='text-align:center;'>"
@@ -308,7 +313,7 @@ public class Vagina implements BodyPartInterface {
 						+ "</p>"));
 				}
 				
-				if(owner.isPlayer() && owner.hasFetish(Fetish.FETISH_PURE_VIRGIN)) {
+				if(Main.game.isVaginalVirginityEnabled() && owner.isPlayer() && owner.hasFetish(Fetish.FETISH_PURE_VIRGIN)) {
 					if(!owner.isVaginaVirgin()) {
 						UtilText.transformationContentSB.append(UtilText.parse(owner,
 								"<p style='text-align:center;'>"

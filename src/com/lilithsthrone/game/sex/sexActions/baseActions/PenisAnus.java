@@ -190,7 +190,7 @@ public class PenisAnus {
 							" [npc2.Name] [npc2.moanVerb] in delight as [npc2.she] [npc2.verb(feel)] [npc.namePos] [npc.cock] stimulating [npc2.her] [npc2.asshole+], and [npc2.verb(buck)] [npc2.her] [npc2.hips+] out in response."));
 					break;
 				case SUB_RESISTING:
-					if(Main.sex.getCharacterTargetedForSexAction(this).isAssVirgin()) {
+					if(Main.sex.getCharacterTargetedForSexAction(this).isAssVirgin() && Main.game.isAnalVirginityEnabled()) {
 						UtilText.nodeContentSB.append(UtilText.returnStringAtRandom(
 								" [npc2.A_sob+] bursts out from between [npc2.namePos] [npc2.lips+] at the thought of what's about to happen, [npc2.speech(No! Don't! Please! I-I'm a virgin! You can't do this!)]",
 								" [npc2.Name] [npc2.verb(let)] out a desperate [npc2.sob], before pleading, [npc2.speech(Please! Don't do this! I'm still a virgin!)]",

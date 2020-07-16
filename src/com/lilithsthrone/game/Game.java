@@ -4261,6 +4261,35 @@ public class Game implements XMLSaving {
 	public boolean isPenetrationLimitationsEnabled() {
 		return Main.getProperties().hasValue(PropertyValue.penetrationLimitations);
 	}
+
+	//calling these methods separately allows for easier implementation of separate settings if someone wants to program that
+	public boolean isVaginalVirginityEnabled() {
+		return Main.getProperties().hasValue(PropertyValue.virginContent);
+	}
+
+	public boolean isPenileVirginityEnabled() {
+		return Main.getProperties().hasValue(PropertyValue.virginContent);
+	}
+
+	public boolean isOralVirginityEnabled() {
+		return Main.getProperties().hasValue(PropertyValue.virginContent);
+	}
+
+	public boolean isAnalVirginityEnabled() {
+		return Main.getProperties().hasValue(PropertyValue.virginContent);
+	}
+
+	public boolean isUrethralVirginityEnabled() {
+		return Main.getProperties().hasValue(PropertyValue.virginContent);
+	}
+
+	public boolean isNippleVirginityEnabled() {
+		return Main.getProperties().hasValue(PropertyValue.virginContent);
+	}
+
+	public boolean isCrotchNippleVirginityEnabled() {
+		return Main.getProperties().hasValue(PropertyValue.virginContent);
+	}
 	
 	public boolean isFootContentEnabled() {
 		return Main.getProperties().hasValue(PropertyValue.footContent);
