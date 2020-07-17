@@ -61,6 +61,7 @@ public enum PropertyValue {
 	footContent(true),
 	gapeContent(true),
 	penetrationLimitations(true),
+	virginContent(true),
 	
 	futanariTesticles(true),
 	bipedalCloaca(true),

@@ -2142,7 +2142,14 @@ public class OptionsDialogue {
 							"Penetrative size-difference",
 							"When enabled, orifices will have a limited depth to them, meaning that penetrative objects (penises and tails) can be too long to fit all the way inside.",
 							Main.getProperties().hasValue(PropertyValue.penetrationLimitations)));
-			
+
+			UtilText.nodeContentSB.append(getContentPreferenceDiv(ContentOptionsPage.SEX,
+							"VIRGINITY",
+							PresetColour.BASE_PINK,
+							"Virginity",
+							"When disabled, removes descriptions of everyone's virginity status, as well as related fetishes.",
+							Main.getProperties().hasValue(PropertyValue.virginContent)));
+
 			UtilText.nodeContentSB.append(getContentPreferenceDiv(ContentOptionsPage.SEX,
 							"FOOT",
 							PresetColour.BASE_TAN,

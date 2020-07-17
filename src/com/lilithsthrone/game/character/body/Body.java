@@ -3222,23 +3222,25 @@ public class Body implements XMLSaving {
 				}
 			}
 		}
-		
-		if (ass.getAnus().getOrificeAnus().isVirgin()) {
-			descriptionSB.append(" [style.colourExcellent([npc.Name] [npc.has] retained [npc.her] anal virginity.)]");
-			
-		} else {
-			boolean virginityLossFound = false;
-			for(SexAreaPenetration pt : SexAreaPenetration.values()) {
-				if(pt.isTakesVirginity()) {
-					if(owner.getVirginityLoss(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.ANUS, pt))!=null) {
-						descriptionSB.append(" <span style='color:" + PresetColour.GENERIC_ARCANE.toWebHexString() + ";'>"+ owner.getVirginityLossDescription(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.ANUS, pt)) + "</span>");
-						virginityLossFound = true;
-						break;
+
+		if(Main.game.isAnalVirginityEnabled()) {
+			if (ass.getAnus().getOrificeAnus().isVirgin()) {
+				descriptionSB.append(" [style.colourExcellent([npc.Name] [npc.has] retained [npc.her] anal virginity.)]");
+
+			} else {
+				boolean virginityLossFound = false;
+				for (SexAreaPenetration pt : SexAreaPenetration.values()) {
+					if (pt.isTakesVirginity()) {
+						if (owner.getVirginityLoss(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.ANUS, pt)) != null) {
+							descriptionSB.append(" <span style='color:" + PresetColour.GENERIC_ARCANE.toWebHexString() + ";'>" + owner.getVirginityLossDescription(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.ANUS, pt)) + "</span>");
+							virginityLossFound = true;
+							break;
+						}
 					}
 				}
-			}
-			if(!virginityLossFound) {
-				descriptionSB.append(" <span style='color:" + PresetColour.GENERIC_ARCANE.toWebHexString() + ";'>[npc.Name] [npc.has] lost [npc.her] anal virginity.</span>");
+				if (!virginityLossFound) {
+					descriptionSB.append(" <span style='color:" + PresetColour.GENERIC_ARCANE.toWebHexString() + ";'>[npc.Name] [npc.has] lost [npc.her] anal virginity.</span>");
+				}
 			}
 		}
 		
@@ -3490,23 +3492,25 @@ public class Body implements XMLSaving {
 					}
 				}
 				
-				if (!viewedBreast.getNipples().getOrificeNipples().isVirgin()) {
-					boolean virginityLossFound = false;
-					for(SexAreaPenetration pt : SexAreaPenetration.values()) {
-						if(pt.isTakesVirginity()) {
-							if(owner.getVirginityLoss(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.NIPPLE, pt))!=null) {
-								descriptionSB.append(" <span style='color:" + PresetColour.GENERIC_ARCANE.toWebHexString() + ";'>"+ owner.getVirginityLossDescription(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.NIPPLE, pt)) + "</span>");
-								virginityLossFound = true;
-								break;
+				if (Main.game.isNippleVirginityEnabled()) {
+					if (!viewedBreast.getNipples().getOrificeNipples().isVirgin()) {
+						boolean virginityLossFound = false;
+						for (SexAreaPenetration pt : SexAreaPenetration.values()) {
+							if (pt.isTakesVirginity()) {
+								if (owner.getVirginityLoss(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.NIPPLE, pt)) != null) {
+									descriptionSB.append(" <span style='color:" + PresetColour.GENERIC_ARCANE.toWebHexString() + ";'>" + owner.getVirginityLossDescription(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.NIPPLE, pt)) + "</span>");
+									virginityLossFound = true;
+									break;
+								}
 							}
 						}
+						if (!virginityLossFound) {
+							descriptionSB.append(" <span style='color:" + PresetColour.GENERIC_ARCANE.toWebHexString() + ";'>[npc.Name] [npc.has] lost [npc.her] nipple virginity.</span>");
+						}
+
+					} else {
+						descriptionSB.append(" [style.colourExcellent([npc.Name] [npc.has] retained [npc.her] nipple virginity.)]");
 					}
-					if(!virginityLossFound) {
-						descriptionSB.append(" <span style='color:" + PresetColour.GENERIC_ARCANE.toWebHexString() + ";'>[npc.Name] [npc.has] lost [npc.her] nipple virginity.</span>");
-					}
-					
-				} else {
-					descriptionSB.append(" [style.colourExcellent([npc.Name] [npc.has] retained [npc.her] nipple virginity.)]");
 				}
 				
 			} else {
@@ -3776,24 +3780,26 @@ public class Body implements XMLSaving {
 						}
 					}
 				}
-				
-				if (!viewedBreastCrotch.getNipples().getOrificeNipples().isVirgin()) {
-					boolean virginityLossFound = false;
-					for(SexAreaPenetration pt : SexAreaPenetration.values()) {
-						if(pt.isTakesVirginity()) {
-							if(owner.getVirginityLoss(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.NIPPLE_CROTCH, pt))!=null) {
-								descriptionSB.append(" <span style='color:" + PresetColour.GENERIC_ARCANE.toWebHexString() + ";'>"+ owner.getVirginityLossDescription(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.NIPPLE_CROTCH, pt)) + "</span>");
-								virginityLossFound = true;
-								break;
+
+				if (Main.game.isCrotchNippleVirginityEnabled()) {
+					if (!viewedBreastCrotch.getNipples().getOrificeNipples().isVirgin()) {
+						boolean virginityLossFound = false;
+						for (SexAreaPenetration pt : SexAreaPenetration.values()) {
+							if (pt.isTakesVirginity()) {
+								if (owner.getVirginityLoss(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.NIPPLE_CROTCH, pt)) != null) {
+									descriptionSB.append(" <span style='color:" + PresetColour.GENERIC_ARCANE.toWebHexString() + ";'>" + owner.getVirginityLossDescription(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.NIPPLE_CROTCH, pt)) + "</span>");
+									virginityLossFound = true;
+									break;
+								}
 							}
 						}
+						if (!virginityLossFound) {
+							descriptionSB.append(" <span style='color:" + PresetColour.GENERIC_ARCANE.toWebHexString() + ";'>[npc.Name] [npc.has] lost [npc.her] [npc.crotchNipple] virginity.</span>");
+						}
+
+					} else {
+						descriptionSB.append(" [style.colourExcellent([npc.Name] [npc.has] retained [npc.her] [npc.crotchNipple] virginity.)]");
 					}
-					if(!virginityLossFound) {
-						descriptionSB.append(" <span style='color:" + PresetColour.GENERIC_ARCANE.toWebHexString() + ";'>[npc.Name] [npc.has] lost [npc.her] [npc.crotchNipple] virginity.</span>");
-					}
-					
-				} else {
-					descriptionSB.append(" [style.colourExcellent([npc.Name] [npc.has] retained [npc.her] [npc.crotchNipple] virginity.)]");
 				}
 				
 			} else {
@@ -3969,7 +3975,7 @@ public class Body implements XMLSaving {
 			}
 		}
 
-		if(owner.getCurrentPenis().getType()!=PenisType.DILDO) {
+		if(owner.getCurrentPenis().getType()!=PenisType.DILDO && Main.game.isPenileVirginityEnabled()) {
 			if (!owner.getCurrentPenis().isVirgin()) {
 				boolean virginityLossFound = false;
 				for(SexAreaOrifice ot : SexAreaOrifice.values()) {
@@ -4072,7 +4078,7 @@ public class Body implements XMLSaving {
 			}
 		}
 
-		if(viewedPenis.getType()!=PenisType.DILDO) {
+		if(viewedPenis.getType()!=PenisType.DILDO && Main.game.isUrethralVirginityEnabled()) {
 			if (isPlayer && !owner.isUrethraVirgin()) {
 				for(SexAreaPenetration pt : SexAreaPenetration.values()) {
 					if(owner.getVirginityLoss(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.URETHRA_PENIS, pt))!=null) {
@@ -4417,36 +4423,38 @@ public class Body implements XMLSaving {
 		}
 		
 		// Virgin/capacity:
-		if(viewedVagina.getOrificeVagina().isVirgin()) {
-			if(isPlayer || !hallucinating) {
-				if(viewedVagina.getOrificeVagina().hasHymen()) {
-					descriptionSB.append(" Within [npc.her] " + Capacity.getCapacityFromValue(viewedVagina.getOrificeVagina().getStretchedCapacity()).getDescriptor(true)
+		if(Main.game.isVaginalVirginityEnabled()) {
+			if (viewedVagina.getOrificeVagina().isVirgin()) {
+				if (isPlayer || !hallucinating) {
+					if (viewedVagina.getOrificeVagina().hasHymen()) {
+						descriptionSB.append(" Within [npc.her] " + Capacity.getCapacityFromValue(viewedVagina.getOrificeVagina().getStretchedCapacity()).getDescriptor(true)
 							+ " [npc.pussy], [style.colourMinorGood([npc.her] hymen is still intact)], and [style.colourExcellent([npc.she] [npc.has] retained [npc.her] vaginal virginity)].");
-					
-				} else {
-					descriptionSB.append(" Within [npc.her] " + Capacity.getCapacityFromValue(viewedVagina.getOrificeVagina().getStretchedCapacity()).getDescriptor(true)
+
+					} else {
+						descriptionSB.append(" Within [npc.her] " + Capacity.getCapacityFromValue(viewedVagina.getOrificeVagina().getStretchedCapacity()).getDescriptor(true)
 							+ " [npc.pussy], [style.colourMinorBad([npc.her] hymen has been torn)], but despite this, [style.colourExcellent([npc.she] [npc.has] retained [npc.her] vaginal virginity)].");
-				}
-			}
-			
-		} else {
-			boolean virginityLossFound = false;
-			for(SexAreaPenetration pt : SexAreaPenetration.values()) {
-				if(pt.isTakesVirginity()) {
-					if(owner.getVirginityLoss(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.VAGINA, pt))!=null) {
-						descriptionSB.append(" [style.colourArcane("+ owner.getVirginityLossDescription(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.VAGINA, pt)) + ")]");
-						virginityLossFound = true;
-						break;
 					}
 				}
-			}
-			if(!virginityLossFound) {
-				descriptionSB.append(" [style.colourArcane([npc.Name] [npc.has] lost [npc.her] virginity.)]");
-			}
-			if(viewedVagina.getOrificeVagina().hasHymen()) {
-				descriptionSB.append(" Although [npc.sheIsFull] no longer a virgin, [style.colourMinorGood([npc.she] [npc.has] an intact hymen)] within [npc.her] pussy.");
+
 			} else {
-				descriptionSB.append(" As is to be expected of someone who is no longer a virgin, [style.colourMinorBad([npc.her] hymen has been torn)].");
+				boolean virginityLossFound = false;
+				for (SexAreaPenetration pt : SexAreaPenetration.values()) {
+					if (pt.isTakesVirginity()) {
+						if (owner.getVirginityLoss(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.VAGINA, pt)) != null) {
+							descriptionSB.append(" [style.colourArcane(" + owner.getVirginityLossDescription(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.VAGINA, pt)) + ")]");
+							virginityLossFound = true;
+							break;
+						}
+					}
+				}
+				if (!virginityLossFound) {
+					descriptionSB.append(" [style.colourArcane([npc.Name] [npc.has] lost [npc.her] virginity.)]");
+				}
+				if (viewedVagina.getOrificeVagina().hasHymen()) {
+					descriptionSB.append(" Although [npc.sheIsFull] no longer a virgin, [style.colourMinorGood([npc.she] [npc.has] an intact hymen)] within [npc.her] pussy.");
+				} else {
+					descriptionSB.append(" As is to be expected of someone who is no longer a virgin, [style.colourMinorBad([npc.her] hymen has been torn)].");
+				}
 			}
 		}
 		
@@ -4783,7 +4791,7 @@ public class Body implements XMLSaving {
 		}
 		
 		
-		if (isPlayer && !owner.isVaginaUrethraVirgin()) {
+		if (isPlayer && !owner.isVaginaUrethraVirgin() && Main.game.isUrethralVirginityEnabled()) {
 			for(SexAreaPenetration pt : SexAreaPenetration.values()) {
 				if(owner.getVirginityLoss(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.URETHRA_VAGINA, pt))!=null) {
 					descriptionSB.append(" <span style='color:" + PresetColour.GENERIC_ARCANE.toWebHexString() + ";'>"+ owner.getVirginityLossDescription(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.URETHRA_VAGINA, pt))+ "</span>");

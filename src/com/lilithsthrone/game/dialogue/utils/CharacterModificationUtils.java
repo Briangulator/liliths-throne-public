@@ -5712,6 +5712,13 @@ public class CharacterModificationUtils {
 					contentSB.append("<div class='container-full-width' style='position:relative; text-align:center;'>");
 						contentSB.append("<p style='width:100%; text-align:center;'>Counter Type</p>");
 						for(TattooCounterType counterType : TattooCounterType.values()) {
+							if ((!Main.game.isAnalVirginityEnabled() && counterType == TattooCounterType.VIRGINITIES_TAKEN_ANAL)
+								|| (!Main.game.isOralVirginityEnabled() && counterType == TattooCounterType.VIRGINITIES_TAKEN_ORAL)
+								|| (!Main.game.isPenileVirginityEnabled() && counterType == TattooCounterType.VIRGINITIES_TAKEN_PENIS)
+								|| (!Main.game.isVirginityEnabled() && counterType == TattooCounterType.VIRGINITIES_TAKEN_TOTAL)
+								|| (!Main.game.isVaginalVirginityEnabled() && counterType == TattooCounterType.VIRGINITIES_TAKEN_VAGINAL)) {
+								continue;
+							}
 							contentSB.append("<div style='width:48%; margin:1%; padding:0; display:inline-block;'>"
 												+ "<div class='normal-button"+(tattoo.getCounter().getType()==counterType?" selected":"")+"' id='TATTOO_COUNTER_TYPE_"+counterType.toString()+"'"
 														+ " style='width:100%; margin:0; color:"+(tattoo.getCounter().getType()==counterType?PresetColour.GENERIC_GOOD:PresetColour.TEXT_HALF_GREY).toWebHexString()+";'>"

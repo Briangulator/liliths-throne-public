@@ -3337,7 +3337,8 @@ public class Sex {
 			if(penetrationType == SexAreaPenetration.PENIS) {
 				if(characterPenetrating.isPenisVirgin()
 						&& characterPenetrating.hasPenisIgnoreDildo()
-						&& actualOrifice.isInternalOrifice()) {
+						&& actualOrifice.isInternalOrifice()
+						&& Main.game.isPenileVirginityEnabled()) {
 					penileVirginityLoss = characterPenetrating.getVirginityLossPenetrationDescription(characterPenetrated, SexAreaPenetration.PENIS, actualOrifice);
 					if(characterPenetrated.hasFetish(Fetish.FETISH_DEFLOWERING)) {
 						characterPenetrated.incrementExperience(Fetish.getExperienceGainFromTakingOtherVirginity(characterPenetrated), true);
@@ -3415,7 +3416,7 @@ public class Sex {
 					
 			} else if(actualOrifice == SexAreaOrifice.ANUS) {
 				if(initialPenetrations.get(characterPenetrated).contains(SexAreaOrifice.ANUS)) {
-					if(characterPenetrated.isAssVirgin() && penetrationType.isTakesVirginity()) {
+					if(characterPenetrated.isAssVirgin() && penetrationType.isTakesVirginity() && Main.game.isAnalVirginityEnabled()) {
 						penetrationSB.append(characterPenetrated.getVirginityLossOrificeDescription(characterPenetrating, penetrationType, SexAreaOrifice.ANUS));
 						if(characterPenetrating.hasFetish(Fetish.FETISH_DEFLOWERING)) {
 							characterPenetrating.incrementExperience(Fetish.getExperienceGainFromTakingOtherVirginity(characterPenetrating), true);
@@ -3439,7 +3440,7 @@ public class Sex {
 					
 			} else if(actualOrifice == SexAreaOrifice.VAGINA) {
 				if(initialPenetrations.get(characterPenetrated).contains(SexAreaOrifice.VAGINA)) {
-					if(penetrationType.isTakesVirginity()) {
+					if(penetrationType.isTakesVirginity() && Main.game.isVaginalVirginityEnabled()) {
 						if(characterPenetrated.isVaginaVirgin()) {
 							penetrationSB.append(characterPenetrated.getVirginityLossOrificeDescription(characterPenetrating, penetrationType, SexAreaOrifice.VAGINA));
 							if(characterPenetrating.hasFetish(Fetish.FETISH_DEFLOWERING)) {
@@ -3484,7 +3485,7 @@ public class Sex {
 				
 			} else if(actualOrifice == SexAreaOrifice.NIPPLE) {
 				if(initialPenetrations.get(characterPenetrated).contains(SexAreaOrifice.NIPPLE)) {
-					if(characterPenetrated.isNippleVirgin() && penetrationType.isTakesVirginity()) {
+					if(characterPenetrated.isNippleVirgin() && penetrationType.isTakesVirginity() && Main.game.isNippleVirginityEnabled()) {
 						penetrationSB.append(characterPenetrated.getVirginityLossOrificeDescription(characterPenetrating, penetrationType, SexAreaOrifice.NIPPLE));
 						if(characterPenetrating.hasFetish(Fetish.FETISH_DEFLOWERING)) {
 							characterPenetrating.incrementExperience(Fetish.getExperienceGainFromTakingOtherVirginity(characterPenetrating), true);
@@ -3528,7 +3529,7 @@ public class Sex {
 					
 			} else if(actualOrifice == SexAreaOrifice.NIPPLE_CROTCH) {
 				if(initialPenetrations.get(characterPenetrated).contains(SexAreaOrifice.NIPPLE_CROTCH)) {
-					if(characterPenetrated.isNippleCrotchVirgin() && penetrationType.isTakesVirginity()) {
+					if(characterPenetrated.isNippleCrotchVirgin() && penetrationType.isTakesVirginity() && Main.game.isCrotchNippleVirginityEnabled()) {
 						penetrationSB.append(characterPenetrated.getVirginityLossOrificeDescription(characterPenetrating, penetrationType, SexAreaOrifice.NIPPLE_CROTCH));
 						if(characterPenetrating.hasFetish(Fetish.FETISH_DEFLOWERING)) {
 							characterPenetrating.incrementExperience(Fetish.getExperienceGainFromTakingOtherVirginity(characterPenetrating), true);
@@ -3552,7 +3553,7 @@ public class Sex {
 				
 			} else if(actualOrifice == SexAreaOrifice.URETHRA_PENIS) {
 				if(initialPenetrations.get(characterPenetrated).contains(SexAreaOrifice.URETHRA_PENIS)) {
-					if(characterPenetrated.isUrethraVirgin() && penetrationType.isTakesVirginity()) {
+					if(characterPenetrated.isUrethraVirgin() && penetrationType.isTakesVirginity() && Main.game.isUrethralVirginityEnabled()) {
 						penetrationSB.append(characterPenetrated.getVirginityLossOrificeDescription(characterPenetrating, penetrationType, SexAreaOrifice.URETHRA_PENIS));
 						if(characterPenetrating.hasFetish(Fetish.FETISH_DEFLOWERING)) {
 							characterPenetrating.incrementExperience(Fetish.getExperienceGainFromTakingOtherVirginity(characterPenetrating), true);
@@ -3576,7 +3577,7 @@ public class Sex {
 				
 			} else if(actualOrifice == SexAreaOrifice.URETHRA_VAGINA) {
 				if(initialPenetrations.get(characterPenetrated).contains(SexAreaOrifice.URETHRA_VAGINA)) {
-					if(characterPenetrated.isVaginaUrethraVirgin() && penetrationType.isTakesVirginity()) {
+					if(characterPenetrated.isVaginaUrethraVirgin() && penetrationType.isTakesVirginity() && Main.game.isUrethralVirginityEnabled()) {
 						penetrationSB.append(characterPenetrated.getVirginityLossOrificeDescription(characterPenetrating, penetrationType, SexAreaOrifice.URETHRA_VAGINA));
 						if(characterPenetrating.hasFetish(Fetish.FETISH_DEFLOWERING)) {
 							characterPenetrating.incrementExperience(Fetish.getExperienceGainFromTakingOtherVirginity(characterPenetrating), true);
@@ -3600,7 +3601,7 @@ public class Sex {
 			
 			} else if(actualOrifice == SexAreaOrifice.MOUTH) {
 				if(initialPenetrations.get(characterPenetrated).contains(SexAreaOrifice.MOUTH)) {
-					if(characterPenetrated.isFaceVirgin() && penetrationType.isTakesVirginity()) {
+					if(characterPenetrated.isFaceVirgin() && penetrationType.isTakesVirginity() && Main.game.isOralVirginityEnabled()) {
 						penetrationSB.append(characterPenetrated.getVirginityLossOrificeDescription(characterPenetrating, penetrationType, SexAreaOrifice.MOUTH));
 						if(characterPenetrating.hasFetish(Fetish.FETISH_DEFLOWERING)) {
 							characterPenetrating.incrementExperience(Fetish.getExperienceGainFromTakingOtherVirginity(characterPenetrating), true);

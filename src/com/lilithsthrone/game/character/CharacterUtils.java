@@ -2412,6 +2412,12 @@ public class CharacterUtils {
 		if(!Main.game.isPenetrationLimitationsEnabled()) {
 			availableFetishes.remove(Fetish.FETISH_SIZE_QUEEN);
 		}
+
+		if(!Main.game.isVaginalVirginityEnabled()) {
+			availableFetishes.remove(Fetish.FETISH_DEFLOWERING);
+			availableFetishes.remove(Fetish.FETISH_PURE_VIRGIN);
+			availableFetishes.remove(Fetish.FETISH_LUSTY_MAIDEN);
+		}
 		
 		if(!Main.getProperties().hasValue(PropertyValue.footContent)) {
 			availableFetishes.remove(Fetish.FETISH_FOOT_GIVING);
@@ -2457,6 +2463,12 @@ public class CharacterUtils {
 		if(!Main.getProperties().hasValue(PropertyValue.analContent)) {
 			availableFetishes.remove(Fetish.FETISH_ANAL_GIVING);
 			availableFetishes.remove(Fetish.FETISH_ANAL_RECEIVING);
+		}
+
+		if(!Main.game.isVaginalVirginityEnabled()) {
+			availableFetishes.remove(Fetish.FETISH_DEFLOWERING);
+			availableFetishes.remove(Fetish.FETISH_PURE_VIRGIN);
+			availableFetishes.remove(Fetish.FETISH_LUSTY_MAIDEN);
 		}
 
 		if(!Main.getProperties().hasValue(PropertyValue.footContent)) {
