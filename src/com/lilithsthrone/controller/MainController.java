@@ -1897,10 +1897,6 @@ public class MainController implements Initializable {
 				}
 			}
 			for (Fetish f : character.getFetishes(true)) {
-				if((!Main.game.isVirginityEnabled() && f == Fetish.FETISH_DEFLOWERING)
-					|| (!Main.game.isVaginalVirginityEnabled() && (f == Fetish.FETISH_PURE_VIRGIN) || f == Fetish.FETISH_LUSTY_MAIDEN)) {
-					continue;
-				}
 				if (((EventTarget) documentAttributes.getElementById("FETISH_"+idModifier + f)) != null) {
 					addEventListener(documentAttributes, "FETISH_"+idModifier + f, "mousemove", moveTooltipListener, false);
 					addEventListener(documentAttributes, "FETISH_"+idModifier + f, "mouseleave", hideTooltipListener, false);
@@ -2225,10 +2221,6 @@ public class MainController implements Initializable {
 					}
 				}
 				for (Fetish f : character.getFetishes(true)) {
-					if((!Main.game.isVirginityEnabled() && f == Fetish.FETISH_DEFLOWERING)
-						|| (!Main.game.isVaginalVirginityEnabled() && (f == Fetish.FETISH_PURE_VIRGIN) || f == Fetish.FETISH_LUSTY_MAIDEN)) {
-						continue;
-					}
 					if (((EventTarget) documentRight.getElementById("FETISH_NPC_"+idModifier + f)) != null) {
 						addEventListener(documentRight, "FETISH_NPC_"+idModifier + f, "mousemove", moveTooltipListener, false);
 						addEventListener(documentRight, "FETISH_NPC_"+idModifier + f, "mouseleave", hideTooltipListener, false);
