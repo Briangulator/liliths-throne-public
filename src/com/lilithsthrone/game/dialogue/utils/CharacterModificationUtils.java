@@ -782,6 +782,10 @@ public class CharacterModificationUtils {
 				break;
 			}
 		}
+
+		if(!Main.game.isVirginityEnabled()) {
+			names[0] = "None";
+		}
 		
 		return "<div class='container-full-width inner'>"
 					+ "<div class='container-full-width inner' style='width:calc(50%);margin:0;padding:0;'>"
