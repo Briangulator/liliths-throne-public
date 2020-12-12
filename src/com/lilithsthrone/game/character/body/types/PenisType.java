@@ -2,6 +2,7 @@ package com.lilithsthrone.game.character.body.types;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.body.Covering;
 import com.lilithsthrone.game.character.body.abstractTypes.AbstractPenisType;
 import com.lilithsthrone.game.character.body.valueEnums.PenetrationModifier;
+import com.lilithsthrone.game.character.race.AbstractRace;
 import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.utils.Util;
 import com.lilithsthrone.utils.colours.PresetColour;
@@ -53,9 +55,9 @@ public class PenisType {
 	public static AbstractPenisType HUMAN = new AbstractPenisType(BodyCoveringType.PENIS,
 			Race.HUMAN,
 			TesticleType.HUMAN,
-			"[npc.She] now [npc.has] a [style.boldHuman(human penis)], covered in [npc.penisFullDescription(true)].<br/>"
+			"[npc.She] now [npc.has] a [style.boldHuman(human penis)], [npc.materialDescriptor] [npc.penisFullDescription(true)].<br/>"
 				+ "[npc.She] [npc.has] [style.boldHuman([npc.ballsCount]#IF(npc.isInternalTesticles()) internal,#ENDIF human balls)],"
-					+ " covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldHuman(human cum)].",
+					+ " [npc.materialDescriptor] [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldHuman(human cum)].",
 			"[npc.She] [npc.has] [npc.a_cockGirth], [npc.cockLengthValue] human cock, which is [npc.materialCompositionDescriptor] [npc.cockFullDescription(true)].",
 			null) {
 	};
@@ -68,9 +70,9 @@ public class PenisType {
 			Util.newArrayListOfValues("angel-"),
 			Util.newArrayListOfValues("angel-"),
 			Util.newArrayListOfValues(""),
-			"[npc.She] now [npc.has] an [style.boldAngel(angelic penis)], covered in [npc.penisFullDescription(true)].<br/>"
+			"[npc.She] now [npc.has] an [style.boldAngel(angelic penis)], [npc.materialDescriptor] [npc.penisFullDescription(true)].<br/>"
 				+ "[npc.She] [npc.has] [style.boldAngel([npc.ballsCount]#IF(npc.isInternalTesticles()) internal,#ENDIF angelic balls)],"
-					+ " covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldAngel(angel cum)].",
+					+ " [npc.materialDescriptor] [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldAngel(angel cum)].",
 			"[npc.She] [npc.has] [npc.a_cockGirth], [npc.cockLengthValue] angel cock, which is [npc.materialCompositionDescriptor] [npc.cockFullDescription(true)].",
 			null) {
 	};
@@ -92,12 +94,12 @@ public class PenisType {
 				+ "#ELSE"
 					+ " [style.boldDemon(demonic penis)]"
 				+ "#ENDIF"
-				+ ", covered in [npc.penisFullDescription(true)].<br/>"
+				+ ", [npc.materialDescriptor] [npc.penisFullDescription(true)].<br/>"
 				+ "[npc.She] now [npc.has]"
 					+ "#IF(npc.isShortStature())"
-						+ " [style.boldImp([npc.ballsCount]#IF(npc.isInternalTesticles()) internal,#ENDIF impish balls)], covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldImp(imp cum)]."
+						+ " [style.boldImp([npc.ballsCount]#IF(npc.isInternalTesticles()) internal,#ENDIF impish balls)], [npc.materialDescriptor] [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldImp(imp cum)]."
 					+ "#ELSE"
-						+ " [style.boldDemon([npc.ballsCount]#IF(npc.isInternalTesticles()) internal,#ENDIF demonic balls)], covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldDemon(demon cum)]."
+						+ " [style.boldDemon([npc.ballsCount]#IF(npc.isInternalTesticles()) internal,#ENDIF demonic balls)], [npc.materialDescriptor] [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldDemon(demon cum)]."
 					+ "#ENDIF",
 			"[npc.She] [npc.has] [npc.a_cockGirth], [npc.cockLengthValue] demonic cock, which is [npc.materialCompositionDescriptor] [npc.cockFullDescription(true)].",
 			Util.newArrayListOfValues(
@@ -115,9 +117,9 @@ public class PenisType {
 			Util.newArrayListOfValues("bull-"),
 			Util.newArrayListOfValues(""),
 			"Letting out an involuntary moan, [npc.name] [npc.verb(feel)] [npc.her] penis shifting into a new form, and [npc.sheIs] hit by a wave of overwhelming arousal as [npc.her] shaft grows wider and the head tapers down into a point.<br/>"
-				+ "[npc.She] now [npc.has] a [style.boldCowMorph(bovine penis)], covered in [npc.penisFullDescription].<br/>"
+				+ "[npc.She] now [npc.has] a [style.boldCowMorph(bovine penis)], [npc.materialDescriptor] [npc.penisFullDescription].<br/>"
 				+ "[npc.She] [npc.has] [style.boldCowMorph([npc.ballsCount]#IF(npc.isInternalTesticles()) internal,#ENDIF bovine balls)],"
-					+ " covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldCowMorph(bovine cum)].",
+					+ " [npc.materialDescriptor] [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldCowMorph(bovine cum)].",
 			"[npc.She] [npc.has] [npc.a_cockGirth], [npc.cockLengthValue] #IF(npc.isFeminine())cow#ELSEbull#ENDIF cock, which is [npc.materialCompositionDescriptor] [npc.cockFullDescription(true)].",
 			Util.newArrayListOfValues(
 				PenetrationModifier.TAPERED,
@@ -135,9 +137,9 @@ public class PenisType {
 			Util.newArrayListOfValues("canine"),
 			"Letting out an involuntary moan, [npc.name] [npc.verb(feel)] [npc.her] penis shifting into a new form, and [npc.sheIs] hit by a wave of overwhelming arousal as a thick knot suddenly presses out at the base of [npc.her] shaft."
 				+ " As [npc.she] [npc.verb(pant)] and [npc.verb(gasp)] for air, the tip of [npc.her] cock narrows down as it tapers into its new form.<br/>"
-				+ "[npc.She] now [npc.has] a [style.boldDogMorph(canine penis)], covered in [npc.penisFullDescription(true)].<br/>"
+				+ "[npc.She] now [npc.has] a [style.boldDogMorph(canine penis)], [npc.materialDescriptor] [npc.penisFullDescription(true)].<br/>"
 				+ "[npc.She] [npc.has] [style.boldDogMorph([npc.ballsCount]#IF(npc.isInternalTesticles()) internal,#ENDIF canine balls)],"
-					+ " covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldDogMorph(canine cum)].",
+					+ " [npc.materialDescriptor] [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldDogMorph(canine cum)].",
 			"[npc.She] [npc.has] [npc.a_cockGirth], [npc.cockLengthValue] dog cock, which is [npc.materialCompositionDescriptor] [npc.cockFullDescription(true)].",
 			Util.newArrayListOfValues(
 				PenetrationModifier.KNOTTED,
@@ -162,9 +164,9 @@ public class PenisType {
 			Util.newArrayListOfValues("lupine"),
 			"Letting out an involuntary moan, [npc.name] [npc.verb(feel)] [npc.her] penis shifting into a new form, and [npc.sheIs] hit by a wave of overwhelming arousal as a thick knot suddenly presses out at the base of [npc.her] shaft."
 				+ " As [npc.she] [npc.verb(pant)] and [npc.verb(gasp)] for air, the tip of [npc.her] cock narrows down as it tapers into its new form.<br/>"
-				+ "[npc.She] now [npc.has] a [style.boldWolfMorph(wolf-like penis)], covered in [npc.penisFullDescription(true)].<br/>"
+				+ "[npc.She] now [npc.has] a [style.boldWolfMorph(wolf-like penis)], [npc.materialDescriptor] [npc.penisFullDescription(true)].<br/>"
 				+ "[npc.She] [npc.has] [style.boldWolfMorph([npc.ballsCount]#IF(npc.isInternalTesticles()) internal,#ENDIF lupine balls)],"
-					+ " covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldWolfMorph(wolf cum)].",
+					+ " [npc.materialDescriptor] [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldWolfMorph(wolf cum)].",
 			"[npc.She] [npc.has] [npc.a_cockGirth], [npc.cockLengthValue] wolf cock, which is [npc.materialCompositionDescriptor] [npc.cockFullDescription(true)].",
 			Util.newArrayListOfValues(
 				PenetrationModifier.KNOTTED,
@@ -189,9 +191,9 @@ public class PenisType {
 			Util.newArrayListOfValues("vulpine"),
 			"Letting out an involuntary moan, [npc.name] [npc.verb(feel)] [npc.her] penis shifting into a new form, and [npc.sheIs] hit by a wave of overwhelming arousal as a thick knot suddenly presses out at the base of [npc.her] shaft."
 				+ " As [npc.she] [npc.verb(pant)] and [npc.verb(gasp)] for air, the tip of [npc.her] cock narrows down as it tapers into its new form.<br/>"
-				+ "[npc.She] now [npc.has] a [style.boldFoxMorph(fox-like penis)], covered in [npc.penisFullDescription(true)].<br/>"
+				+ "[npc.She] now [npc.has] a [style.boldFoxMorph(fox-like penis)], [npc.materialDescriptor] [npc.penisFullDescription(true)].<br/>"
 				+ "[npc.She] [npc.has] [style.boldFoxMorph([npc.ballsCount]#IF(npc.isInternalTesticles()) internal,#ENDIF vulpine balls)],"
-					+ " covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldFoxMorph(fox cum)].",
+					+ " [npc.materialDescriptor] [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldFoxMorph(fox cum)].",
 			"[npc.She] [npc.has] [npc.a_cockGirth], [npc.cockLengthValue] fox cock, which is [npc.materialCompositionDescriptor] [npc.cockFullDescription(true)].",
 			Util.newArrayListOfValues(
 				PenetrationModifier.KNOTTED,
@@ -216,9 +218,9 @@ public class PenisType {
 			Util.newArrayListOfValues("feline"),
 			"Letting out an involuntary moan, [npc.she] [npc.verb(feel)] [npc.her] penis shifting into a new form,"
 					+ " and [npc.sheIs] hit by a wave of overwhelming arousal as rows of fleshy little backwards-facing barbs press out all along [npc.her] shaft.<br/>"
-				+ "[npc.She] now [npc.has] a [style.boldCatMorph(feline penis)], covered in [npc.penisFullDescription(true)].<br/>"
+				+ "[npc.She] now [npc.has] a [style.boldCatMorph(feline penis)], [npc.materialDescriptor] [npc.penisFullDescription(true)].<br/>"
 				+ "[npc.She] [npc.has] [style.boldCatMorph([npc.ballsCount]#IF(npc.isInternalTesticles()) internal,#ENDIF feline balls)],"
-					+ " covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldCatMorph(feline cum)].",
+					+ " [npc.materialDescriptor] [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldCatMorph(feline cum)].",
 			"[npc.She] [npc.has] [npc.a_cockGirth], [npc.cockLengthValue] cat cock, which is [npc.materialCompositionDescriptor] [npc.cockFullDescription(true)].",
 			Util.newArrayListOfValues(
 				PenetrationModifier.BARBED,
@@ -234,9 +236,9 @@ public class PenisType {
 			Util.newArrayListOfValues("alligator-"),
 			Util.newArrayListOfValues("reptilian"),
 			"Letting out an involuntary moan, [npc.name] [npc.verb(feel)] [npc.her] penis shifting into a new form, and [npc.sheIs] hit by a wave of overwhelming arousal as [npc.her] shaft grows erect and the head smoothes over.<br/>"
-				+ "[npc.She] now [npc.has] an [style.boldGatorMorph(alligator penis)], covered in [npc.penisFullDescription].<br/>"
+				+ "[npc.She] now [npc.has] an [style.boldGatorMorph(alligator penis)], [npc.materialDescriptor] [npc.penisFullDescription].<br/>"
 				+ "[npc.She] [npc.has] [style.boldGatorMorph([npc.ballsCount]#IF(npc.isInternalTesticles()) internal,#ENDIF reptilian balls)],"
-						+ " covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldGatorMorph(alligator-morph cum)].",
+						+ " [npc.materialDescriptor] [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldGatorMorph(alligator-morph cum)].",
 			"[npc.She] [npc.has] [npc.a_cockGirth], [npc.cockLengthValue] alligator cock, which is [npc.materialCompositionDescriptor] [npc.cockFullDescription(true)].",
 			Util.newArrayListOfValues(
 				PenetrationModifier.BLUNT)) {
@@ -251,9 +253,9 @@ public class PenisType {
 			Util.newArrayListOfValues("stallion-", "horse-", "equine-"),
 			Util.newArrayListOfValues(""),
 			"Letting out an involuntary moan, [npc.name] [npc.verb(feel)] [npc.her] penis shifting into a new form, and [npc.sheIs] hit by a wave of overwhelming arousal as [npc.her] shaft grows wider and the head flattens down.<br/>"
-				+ "[npc.She] now [npc.has] an [style.boldHorseMorph(equine penis)], covered in [npc.penisFullDescription(true)].<br/>"
+				+ "[npc.She] now [npc.has] an [style.boldHorseMorph(equine penis)], [npc.materialDescriptor] [npc.penisFullDescription(true)].<br/>"
 				+ "[npc.She] [npc.has] [style.boldHorseMorph([npc.ballsCount]#IF(npc.isInternalTesticles()) internal,#ENDIF equine balls)],"
-					+ " covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldHorseMorph(equine cum)].",
+					+ " [npc.materialDescriptor] [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldHorseMorph(equine cum)].",
 			"[npc.She] [npc.has] [npc.a_cockGirth], [npc.cockLengthValue] horse cock, which is [npc.materialCompositionDescriptor] [npc.cockFullDescription(true)].",
 			Util.newArrayListOfValues(
 				PenetrationModifier.FLARED,
@@ -270,9 +272,9 @@ public class PenisType {
 			Util.newArrayListOfValues("reindeer-"),
 			Util.newArrayListOfValues(""),
 			"Letting out an involuntary moan, [npc.name] [npc.verb(feel)] [npc.her] penis shifting into a new form, and [npc.sheIs] hit by a wave of overwhelming arousal as [npc.her] shaft grows wider and the head flattens down.<br/>"
-				+ "[npc.She] now [npc.has] an [style.boldReindeerMorph(reindeer-like penis)], covered in [npc.penisFullDescription(true)].<br/>"
+				+ "[npc.She] now [npc.has] an [style.boldReindeerMorph(reindeer-like penis)], [npc.materialDescriptor] [npc.penisFullDescription(true)].<br/>"
 				+ "[npc.She] [npc.has] [style.boldReindeerMorph([npc.ballsCount]#IF(npc.isInternalTesticles()) internal,#ENDIF reindeer balls)],"
-					+ " covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldReindeerMorph(reindeer cum)].",
+					+ " [npc.materialDescriptor] [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldReindeerMorph(reindeer cum)].",
 			"[npc.She] [npc.has] [npc.a_cockGirth], [npc.cockLengthValue] reindeer cock, which is [npc.materialCompositionDescriptor] [npc.cockFullDescription(true)].",
 			Util.newArrayListOfValues(
 				PenetrationModifier.TAPERED,
@@ -288,8 +290,8 @@ public class PenisType {
 			Util.newArrayListOfValues("harpy-"),
 			Util.newArrayListOfValues("avian"),
 			"Letting out an involuntary moan, [npc.name] [npc.verb(feel)] [npc.her] penis shifting into a new form, and [npc.sheIs] hit by a wave of overwhelming arousal as it retreats down into a new sheath that's formed at the base.<br/>"
-				+ "[npc.She] now [npc.has] an [style.boldHarpy(avian penis)], covered in [npc.penisFullDescription(true)].<br/>"
-				+ "[npc.She] [npc.has] [style.boldHarpy([npc.ballsCount]#IF(npc.isInternalTesticles()) internal,#ENDIF avian balls)], covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldHarpy(bird cum)].",
+				+ "[npc.She] now [npc.has] an [style.boldHarpy(avian penis)], [npc.materialDescriptor] [npc.penisFullDescription(true)].<br/>"
+				+ "[npc.She] [npc.has] [style.boldHarpy([npc.ballsCount]#IF(npc.isInternalTesticles()) internal,#ENDIF avian balls)], [npc.materialDescriptor] [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldHarpy(bird cum)].",
 			"[npc.She] [npc.has] [npc.a_cockGirth], [npc.cockLengthValue] bird cock, which is [npc.materialCompositionDescriptor] [npc.cockFullDescription(true)].",
 			Util.newArrayListOfValues(
 				PenetrationModifier.SHEATHED)) {
@@ -303,9 +305,9 @@ public class PenisType {
 			Util.newArrayListOfValues("squirrel-"),
 			Util.newArrayListOfValues("squirrel-"),
 			Util.newArrayListOfValues("rodent"),
-			"[npc.She] now [npc.has] a [style.boldSquirrelMorph(squirrel-morph's penis)], covered in [npc.penisFullDescription(true)].<br/>"
+			"[npc.She] now [npc.has] a [style.boldSquirrelMorph(squirrel-morph's penis)], [npc.materialDescriptor] [npc.penisFullDescription(true)].<br/>"
 				+ "[npc.She] [npc.has] [style.boldSquirrelMorph([npc.ballsCount]#IF(npc.isInternalTesticles()) internal,#ENDIF squirrel balls)],"
-					+ " covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldSquirrelMorph(squirrel cum)].",
+					+ " [npc.materialDescriptor] [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldSquirrelMorph(squirrel cum)].",
 			"[npc.She] [npc.has] [npc.a_cockGirth], [npc.cockLengthValue] squirrel cock, which is [npc.materialCompositionDescriptor] [npc.cockFullDescription(true)].",
 			Util.newArrayListOfValues(
 				PenetrationModifier.SHEATHED)) {
@@ -319,8 +321,8 @@ public class PenisType {
 			Util.newArrayListOfValues("rat-"),
 			Util.newArrayListOfValues("rat-"),
 			Util.newArrayListOfValues(""),
-			"[npc.She] now [npc.has] a [style.boldRatMorph(rat penis)], covered in [npc.penisFullDescription(true)].<br/>"
-				+ "[npc.She] [npc.has] [style.boldRatMorph([npc.ballsCount]#IF(npc.isInternalTesticles()) internal,#ENDIF rat balls)], covered in [npc.ballsFullDescription(true)],"
+			"[npc.She] now [npc.has] a [style.boldRatMorph(rat penis)], [npc.materialDescriptor] [npc.penisFullDescription(true)].<br/>"
+				+ "[npc.She] [npc.has] [style.boldRatMorph([npc.ballsCount]#IF(npc.isInternalTesticles()) internal,#ENDIF rat balls)], [npc.materialDescriptor] [npc.ballsFullDescription(true)],"
 					+ " which produce [npc.cumColour(true)] [style.boldRatMorph(rat cum)].",
 			"[npc.She] [npc.has] [npc.a_cockGirth], [npc.cockLengthValue] rat cock, which is [npc.materialCompositionDescriptor] [npc.cockFullDescription(true)].",
 			Util.newArrayListOfValues(
@@ -335,9 +337,9 @@ public class PenisType {
 			Util.newArrayListOfValues("rabbit-"),
 			Util.newArrayListOfValues("rabbit-"),
 			Util.newArrayListOfValues(""),
-			"[npc.She] now [npc.has] a [style.boldRabbitMorph(rabbit penis)], covered in [npc.penisFullDescription(true)].<br/>"
+			"[npc.She] now [npc.has] a [style.boldRabbitMorph(rabbit penis)], [npc.materialDescriptor] [npc.penisFullDescription(true)].<br/>"
 				+ "[npc.She] [npc.has] [style.boldRabbitMorph([npc.ballsCount]#IF(npc.isInternalTesticles()) internal,#ENDIF rabbit balls)],"
-					+ " covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldRabbitMorph(rabbit cum)].",
+					+ " [npc.materialDescriptor] [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldRabbitMorph(rabbit cum)].",
 			"[npc.She] [npc.has] [npc.a_cockGirth], [npc.cockLengthValue] rabbit cock, which is [npc.materialCompositionDescriptor] [npc.cockFullDescription(true)].",
 			Util.newArrayListOfValues(
 				PenetrationModifier.SHEATHED)) {
@@ -351,9 +353,9 @@ public class PenisType {
 			Util.newArrayListOfValues("bat-"),
 			Util.newArrayListOfValues("bat-"),
 			Util.newArrayListOfValues(""),
-			"[npc.She] now [npc.has] a [style.boldBatMorph(bat penis)], covered in [npc.penisFullDescription(true)].<br/>"
+			"[npc.She] now [npc.has] a [style.boldBatMorph(bat penis)], [npc.materialDescriptor] [npc.penisFullDescription(true)].<br/>"
 				+ "[npc.She] [npc.has] [style.boldBatMorph([npc.ballsCount]#IF(npc.isInternalTesticles()) internal,#ENDIF bat balls)],"
-					+ " covered in [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldBatMorph(bat cum)].",
+					+ " [npc.materialDescriptor] [npc.ballsFullDescription(true)], which produce [npc.cumColour(true)] [style.boldBatMorph(bat cum)].",
 			"[npc.She] [npc.has] [npc.a_cockGirth], [npc.cockLengthValue] bat cock, which is [npc.materialCompositionDescriptor] [npc.cockFullDescription(true)].",
 			Util.newArrayListOfValues(
 				PenetrationModifier.SHEATHED)) {
@@ -387,6 +389,13 @@ public class PenisType {
 				}
 			}
 		}
+		
+		Collections.sort(allPenisTypes, (t1, t2)->
+			t1.getRace()==Race.NONE
+				?-1
+				:(t2.getRace()==Race.NONE
+					?1
+					:t1.getRace().getName(false).compareTo(t2.getRace().getName(false))));
 	}
 	
 	public static AbstractPenisType getPenisTypeFromId(String id) {
@@ -426,9 +435,9 @@ public class PenisType {
 		return allPenisTypes;
 	}
 	
-	private static Map<Race, List<AbstractPenisType>> typesMap = new HashMap<>();
+	private static Map<AbstractRace, List<AbstractPenisType>> typesMap = new HashMap<>();
 	
-	public static List<AbstractPenisType> getPenisTypes(Race r) {
+	public static List<AbstractPenisType> getPenisTypes(AbstractRace r) {
 		if(typesMap.containsKey(r)) {
 			return typesMap.get(r);
 		}

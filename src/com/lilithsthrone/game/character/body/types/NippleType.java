@@ -2,11 +2,13 @@ package com.lilithsthrone.game.character.body.types;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.lilithsthrone.game.character.body.abstractTypes.AbstractNippleType;
+import com.lilithsthrone.game.character.race.AbstractRace;
 import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.utils.Util;
 
@@ -167,6 +169,13 @@ public class NippleType {
 				}
 			}
 		}
+		
+		Collections.sort(allNippleTypes, (t1, t2)->
+			t1.getRace()==Race.NONE
+				?-1
+				:(t2.getRace()==Race.NONE
+					?1
+					:t1.getRace().getName(false).compareTo(t2.getRace().getName(false))));
 	}
 	
 	public static AbstractNippleType getNippleTypeFromId(String id) {
@@ -186,8 +195,8 @@ public class NippleType {
 		return allNippleTypes;
 	}
 	
-	private static Map<Race, List<AbstractNippleType>> typesMap = new HashMap<>();
-	public static List<AbstractNippleType> getNippleTypes(Race r) {
+	private static Map<AbstractRace, List<AbstractNippleType>> typesMap = new HashMap<>();
+	public static List<AbstractNippleType> getNippleTypes(AbstractRace r) {
 		if(typesMap.containsKey(r)) {
 			return typesMap.get(r);
 		}

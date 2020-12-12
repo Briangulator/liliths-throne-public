@@ -2,11 +2,13 @@ package com.lilithsthrone.game.character.body.types;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.lilithsthrone.game.character.body.abstractTypes.AbstractBreastType;
+import com.lilithsthrone.game.character.race.AbstractRace;
 import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.utils.Util;
 
@@ -216,6 +218,13 @@ public class BreastType {
 				}
 			}
 		}
+		
+		Collections.sort(allBreastTypes, (t1, t2)->
+			t1.getRace()==Race.NONE
+				?-1
+				:(t2.getRace()==Race.NONE
+					?1
+					:t1.getRace().getName(false).compareTo(t2.getRace().getName(false))));
 	}
 	
 	public static AbstractBreastType getBreastTypeFromId(String id) {
@@ -238,8 +247,8 @@ public class BreastType {
 		return allBreastTypes;
 	}
 	
-	private static Map<Race, List<AbstractBreastType>> typesMap = new HashMap<>();
-	public static List<AbstractBreastType> getBreastTypes(Race r) {
+	private static Map<AbstractRace, List<AbstractBreastType>> typesMap = new HashMap<>();
+	public static List<AbstractBreastType> getBreastTypes(AbstractRace r) {
 		if(typesMap.containsKey(r)) {
 			return typesMap.get(r);
 		}

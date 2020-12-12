@@ -8,16 +8,17 @@ import com.lilithsthrone.game.character.npc.NPC;
 import com.lilithsthrone.game.character.npc.NPCFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNode;
+import com.lilithsthrone.game.dialogue.npcDialogue.QuickTransformations;
 import com.lilithsthrone.game.dialogue.places.dominion.RedLightDistrict;
 import com.lilithsthrone.game.dialogue.responses.Response;
 import com.lilithsthrone.game.dialogue.responses.ResponseCombat;
 import com.lilithsthrone.game.dialogue.responses.ResponseEffectsOnly;
 import com.lilithsthrone.game.dialogue.responses.ResponseSex;
 import com.lilithsthrone.game.dialogue.responses.ResponseTag;
+import com.lilithsthrone.game.dialogue.utils.BodyChanging;
 import com.lilithsthrone.game.dialogue.utils.InventoryInteraction;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.weapon.AbstractWeapon;
-import com.lilithsthrone.game.inventory.weapon.AbstractWeaponType;
 import com.lilithsthrone.game.sex.SexPace;
 import com.lilithsthrone.game.sex.managers.universal.SMGeneric;
 import com.lilithsthrone.main.Main;
@@ -396,7 +397,7 @@ public class AlleywayProstituteDialogue {
 					} else {
 						return new Response(
 								"Remove ("+UtilText.formatAsMoney(FINE_AMOUNT, "span")+")",
-								UtilText.parse(getProstitute(), "Give [npc.name] enough money to pay off the Enforcers who are after [npc.herHim], which would allow [npc.her] to stop having to work in these dangerous alleyways."
+								UtilText.parse(getProstitute(), "Give [npc.name] enough money to pay off the Enforcers who are after [npc.herHim], which would allow [npc.herHim] to stop having to work in these dangerous alleyways."
 										+ "<br/>[style.italicsBad(This will permanently remove [npc.herHim] from the game!)]"),
 								PROSTITUTE_REMOVAL_PAID) {
 							@Override
@@ -483,11 +484,11 @@ public class AlleywayProstituteDialogue {
 			double rnd = Math.random();
 			AbstractWeapon weapon;
 			if(rnd<0.60f) {
-				weapon = AbstractWeaponType.generateWeapon("dsg_eep_enbaton_enbaton"); // 60% chance of getting a baton
+				weapon = Main.game.getItemGen().generateWeapon("dsg_eep_enbaton_enbaton"); // 60% chance of getting a baton
 			} else if(rnd<0.30f){
-				weapon = AbstractWeaponType.generateWeapon("dsg_eep_pbweap_pbpistol"); // 30% chance of getting a pistol
+				weapon = Main.game.getItemGen().generateWeapon("dsg_eep_pbweap_pbpistol"); // 30% chance of getting a pistol
 			} else {
-				weapon = AbstractWeaponType.generateWeapon("dsg_eep_taser_taser"); // 10% chance of getting a taser
+				weapon = Main.game.getItemGen().generateWeapon("dsg_eep_taser_taser"); // 10% chance of getting a taser
 			}
 			UtilText.addSpecialParsingString(weapon.getName(true, true), true);
 			UtilText.addSpecialParsingString(Util.intToString(FINE_AMOUNT), false);
@@ -615,6 +616,23 @@ public class AlleywayProstituteDialogue {
 					}
 				};
 				
+			} else if (index == 8 && getProstitute().isAbleToSelfTransform()) {
+				return new Response("Transform [npc.herHim]",
+						"Take a very detailed look at what [npc.name] can transform [npc.herself] into...",
+						BodyChanging.BODY_CHANGING_CORE){
+					@Override
+					public void effects() {
+						Main.game.saveDialogueNode();
+						BodyChanging.setTarget(getProstitute());
+					}
+				};
+				
+			} else if (index == 9 && getProstitute().isAbleToSelfTransform()) {
+				return new Response("Quick transformations",
+						"As [npc.she] is able to transform [npc.herself], you have a few quick ideas in mind..."
+								+ "(You'll return to these options once finished transforming [npc.herHim].)",
+						QuickTransformations.initQuickTransformations("misc/quickTransformations", getProstitute(), AFTER_COMBAT_VICTORY));
+			
 			} else if (index == 11 && Main.game.getPlayer().hasCompanions()) {
 				GameCharacter companion = Main.game.getPlayer().getMainCompanion();
 				

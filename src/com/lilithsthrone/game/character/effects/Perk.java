@@ -162,6 +162,62 @@ public class Perk {
 		}
 	};
 	
+	public static AbstractPerk JOB_NPC_ENFORCER_SWORD_SUPER = new AbstractPerk(20,
+			true,
+			"Enforcer: SWORD Superintendent",
+			PerkCategory.JOB,
+			"perks/jobs/npc_enforcer_superintendent",
+			PresetColour.CLOTHING_BLUE,
+			Util.newHashMapOfValues(
+					new Value<Attribute, Integer>(Attribute.MAJOR_PHYSIQUE, 25),
+					new Value<Attribute, Integer>(Attribute.MAJOR_ARCANE, 25),
+					new Value<Attribute, Integer>(Attribute.DAMAGE_UNARMED, 35),
+					new Value<Attribute, Integer>(Attribute.DAMAGE_MELEE_WEAPON, 35),
+					new Value<Attribute, Integer>(Attribute.DAMAGE_RANGED_WEAPON, 35)),
+			null) {
+		@Override
+		public String getDescription(GameCharacter owner) {
+			return UtilText.parse(owner, "[npc.Name] holds the rank of 'Superintendent' in the Enforcer's 'Special Weapons and Operations Response Department', and has received an extensive amount of combat training.");
+		}
+		@Override
+		public String getSVGString(GameCharacter owner) {
+			if(owner.isFeminine()) {
+				generateSVGImage(this.pathName, Util.newArrayListOfValues(PresetColour.CLOTHING_PINK));
+			} else {
+				generateSVGImage(this.pathName, Util.newArrayListOfValues(PresetColour.CLOTHING_BLUE));
+			}
+			return super.getSVGString(owner);
+		}
+	};
+	
+	public static AbstractPerk JOB_NPC_ENFORCER_SWORD_CHIEF_INSPECTOR = new AbstractPerk(20,
+			true,
+			"Enforcer: SWORD Chief Inspector",
+			PerkCategory.JOB,
+			"perks/jobs/npc_enforcer_chief_inspector",
+			PresetColour.CLOTHING_BLUE,
+			Util.newHashMapOfValues(
+					new Value<Attribute, Integer>(Attribute.MAJOR_PHYSIQUE, 20),
+					new Value<Attribute, Integer>(Attribute.MAJOR_ARCANE, 20),
+					new Value<Attribute, Integer>(Attribute.DAMAGE_UNARMED, 30),
+					new Value<Attribute, Integer>(Attribute.DAMAGE_MELEE_WEAPON, 30),
+					new Value<Attribute, Integer>(Attribute.DAMAGE_RANGED_WEAPON, 30)),
+			null) {
+		@Override
+		public String getDescription(GameCharacter owner) {
+			return UtilText.parse(owner, "[npc.Name] holds the rank of 'Chief Inspector' in the Enforcer's 'Special Weapons and Operations Response Department', and has received an extensive amount of combat training.");
+		}
+		@Override
+		public String getSVGString(GameCharacter owner) {
+			if(owner.isFeminine()) {
+				generateSVGImage(this.pathName, Util.newArrayListOfValues(PresetColour.CLOTHING_PINK));
+			} else {
+				generateSVGImage(this.pathName, Util.newArrayListOfValues(PresetColour.CLOTHING_BLUE));
+			}
+			return super.getSVGString(owner);
+		}
+	};
+	
 	public static AbstractPerk JOB_NPC_ENFORCER_SWORD_INSPECTOR = new AbstractPerk(20,
 			true,
 			"Enforcer: SWORD Inspector",
@@ -935,7 +991,9 @@ public class Perk {
 			PresetColour.BASE_ORANGE,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Integer>(Attribute.RESISTANCE_POISON, 25)),
-			Util.newArrayListOfValues("[style.boldExcellent(Double)] all potions effects' strength and length")) {
+			Util.newArrayListOfValues(
+					"[style.boldExcellent(Double)] duration of all potion effects",
+					"[style.boldExcellent(Doubles)] potion effect limit")) {
 		@Override
 		public String getDescription(GameCharacter owner) {
 			return UtilText.parse(owner, "Thanks to spending a considerable amount of time tasting food, [npc.name] [npc.has] both a significant resistance to poison, as well as the ability to make culinary marvels out of basic ingredients.");
@@ -2011,8 +2069,8 @@ public class Perk {
 			PerkCategory.PHYSICAL,
 			"perks/unarmed_training",
 			PresetColour.ATTRIBUTE_PHYSIQUE,
-			Util.newHashMapOfValues(),
-			Util.newArrayListOfValues("Base unarmed damage value is [style.boldExcellent(tripled)]")) {
+			Util.newHashMapOfValues(new Value<Attribute, Integer>(Attribute.CRITICAL_DAMAGE, 25)),
+			Util.newArrayListOfValues("Base unarmed damage value is [style.boldExcellent(doubled)]")) {
 		@Override
 		public String getDescription(GameCharacter owner) {
 			return UtilText.parse(owner, "[npc.NameHasFull] received formal training in martial arts, allowing [npc.herHim] to deal just as much damage in unarmed combat as [npc.her] strongest foe.");
@@ -2244,7 +2302,7 @@ public class Perk {
 			"perks/barren",
 			PresetColour.GENERIC_SEX,
 			Util.newHashMapOfValues(new Value<Attribute, Integer>(Attribute.FERTILITY, -200)),
-			Util.newArrayListOfValues("While "+Attribute.FERTILITY.getName()+" value is 0 or less, pregnancy is [style.colourTerible(impossible)]")) {
+			Util.newArrayListOfValues("While "+Attribute.FERTILITY.getName()+" value is 0 or less, pregnancy is [style.colourTerrible(impossible)]")) {
 
 		@Override
 		public String getDescription(GameCharacter owner) {
@@ -2259,7 +2317,7 @@ public class Perk {
 			"perks/firing_blanks",
 			PresetColour.GENERIC_SEX,
 			Util.newHashMapOfValues(new Value<Attribute, Integer>(Attribute.VIRILITY, -200)),
-			Util.newArrayListOfValues("While "+Attribute.VIRILITY.getName()+" value is 0 or less, impregnation is [style.colourTerible(impossible)]")) {
+			Util.newArrayListOfValues("While "+Attribute.VIRILITY.getName()+" value is 0 or less, impregnation is [style.colourTerrible(impossible)]")) {
 
 		@Override
 		public String getDescription(GameCharacter owner) {
@@ -3016,7 +3074,7 @@ public class Perk {
 			"Spell",
 			PerkCategory.ARCANE_FIRE,
 			null,
-			PresetColour.DAMAGE_TYPE_FIRE,
+			PresetColour.SPELL_SCHOOL_FIRE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.FIREBALL,
@@ -3050,7 +3108,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.ARCANE_FIRE,
 			null,
-			PresetColour.DAMAGE_TYPE_FIRE,
+			PresetColour.SPELL_SCHOOL_FIRE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.FIREBALL,
@@ -3084,7 +3142,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.ARCANE_FIRE,
 			null,
-			PresetColour.DAMAGE_TYPE_FIRE,
+			PresetColour.SPELL_SCHOOL_FIRE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.FIREBALL,
@@ -3118,7 +3176,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.ARCANE_FIRE,
 			null,
-			PresetColour.DAMAGE_TYPE_FIRE,
+			PresetColour.SPELL_SCHOOL_FIRE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.FIREBALL,
@@ -3152,7 +3210,7 @@ public class Perk {
 			"Spell",
 			PerkCategory.ARCANE_FIRE,
 			null,
-			PresetColour.DAMAGE_TYPE_FIRE,
+			PresetColour.SPELL_SCHOOL_FIRE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.FLASH,
@@ -3186,7 +3244,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.ARCANE_FIRE,
 			null,
-			PresetColour.DAMAGE_TYPE_FIRE,
+			PresetColour.SPELL_SCHOOL_FIRE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.FLASH,
@@ -3220,7 +3278,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.ARCANE_FIRE,
 			null,
-			PresetColour.DAMAGE_TYPE_FIRE,
+			PresetColour.SPELL_SCHOOL_FIRE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.FLASH,
@@ -3254,7 +3312,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.ARCANE_FIRE,
 			null,
-			PresetColour.DAMAGE_TYPE_FIRE,
+			PresetColour.SPELL_SCHOOL_FIRE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.FLASH,
@@ -3288,7 +3346,7 @@ public class Perk {
 			"Spell",
 			PerkCategory.ARCANE_FIRE,
 			null,
-			PresetColour.DAMAGE_TYPE_FIRE,
+			PresetColour.SPELL_SCHOOL_FIRE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.CLOAK_OF_FLAMES,
@@ -3322,7 +3380,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.ARCANE_FIRE,
 			null,
-			PresetColour.DAMAGE_TYPE_FIRE,
+			PresetColour.SPELL_SCHOOL_FIRE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.CLOAK_OF_FLAMES,
@@ -3356,7 +3414,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.ARCANE_FIRE,
 			null,
-			PresetColour.DAMAGE_TYPE_FIRE,
+			PresetColour.SPELL_SCHOOL_FIRE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.CLOAK_OF_FLAMES,
@@ -3390,7 +3448,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.ARCANE_FIRE,
 			null,
-			PresetColour.DAMAGE_TYPE_FIRE,
+			PresetColour.SPELL_SCHOOL_FIRE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.CLOAK_OF_FLAMES,
@@ -3424,7 +3482,7 @@ public class Perk {
 			"ignition",
 			PerkCategory.ARCANE_FIRE,
 			"perks/elemental/fire1",
-			PresetColour.DAMAGE_TYPE_FIRE,
+			PresetColour.SPELL_SCHOOL_FIRE,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Integer>(Attribute.DAMAGE_FIRE, 1),
 					new Value<Attribute, Integer>(Attribute.RESISTANCE_FIRE, 1)),
@@ -3441,7 +3499,7 @@ public class Perk {
 			"ablaze",
 			PerkCategory.ARCANE_FIRE,
 			"perks/elemental/fire2",
-			PresetColour.DAMAGE_TYPE_FIRE,
+			PresetColour.SPELL_SCHOOL_FIRE,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Integer>(Attribute.DAMAGE_FIRE, 3),
 					new Value<Attribute, Integer>(Attribute.RESISTANCE_FIRE, 3)),
@@ -3459,7 +3517,7 @@ public class Perk {
 			"conflagration",
 			PerkCategory.ARCANE_FIRE,
 			"perks/elemental/fire3",
-			PresetColour.DAMAGE_TYPE_FIRE,
+			PresetColour.SPELL_SCHOOL_FIRE,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Integer>(Attribute.DAMAGE_FIRE, 6),
 					new Value<Attribute, Integer>(Attribute.RESISTANCE_FIRE, 6)),
@@ -3476,7 +3534,7 @@ public class Perk {
 			"incineration",
 			PerkCategory.ARCANE_FIRE,
 			"perks/elemental/fire4",
-			PresetColour.DAMAGE_TYPE_FIRE,
+			PresetColour.SPELL_SCHOOL_FIRE,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Integer>(Attribute.DAMAGE_FIRE, 20),
 					new Value<Attribute, Integer>(Attribute.RESISTANCE_FIRE, 20),
@@ -3496,7 +3554,7 @@ public class Perk {
 			"Spell",
 			PerkCategory.PHYSICAL_EARTH,
 			null,
-			PresetColour.DAMAGE_TYPE_PHYSICAL,
+			PresetColour.SPELL_SCHOOL_EARTH,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.SLAM,
@@ -3530,7 +3588,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.PHYSICAL_EARTH,
 			null,
-			PresetColour.DAMAGE_TYPE_PHYSICAL,
+			PresetColour.SPELL_SCHOOL_EARTH,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.SLAM,
@@ -3564,7 +3622,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.PHYSICAL_EARTH,
 			null,
-			PresetColour.DAMAGE_TYPE_PHYSICAL,
+			PresetColour.SPELL_SCHOOL_EARTH,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.SLAM,
@@ -3598,7 +3656,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.PHYSICAL_EARTH,
 			null,
-			PresetColour.DAMAGE_TYPE_PHYSICAL,
+			PresetColour.SPELL_SCHOOL_EARTH,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.SLAM,
@@ -3632,7 +3690,7 @@ public class Perk {
 			"Spell",
 			PerkCategory.PHYSICAL_EARTH,
 			null,
-			PresetColour.DAMAGE_TYPE_PHYSICAL,
+			PresetColour.SPELL_SCHOOL_EARTH,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.TELEKENETIC_SHOWER,
@@ -3666,7 +3724,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.PHYSICAL_EARTH,
 			null,
-			PresetColour.DAMAGE_TYPE_PHYSICAL,
+			PresetColour.SPELL_SCHOOL_EARTH,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.TELEKENETIC_SHOWER,
@@ -3700,7 +3758,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.PHYSICAL_EARTH,
 			null,
-			PresetColour.DAMAGE_TYPE_PHYSICAL,
+			PresetColour.SPELL_SCHOOL_EARTH,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.TELEKENETIC_SHOWER,
@@ -3734,7 +3792,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.PHYSICAL_EARTH,
 			null,
-			PresetColour.DAMAGE_TYPE_PHYSICAL,
+			PresetColour.SPELL_SCHOOL_EARTH,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.TELEKENETIC_SHOWER,
@@ -3768,7 +3826,7 @@ public class Perk {
 			"Spell",
 			PerkCategory.PHYSICAL_EARTH,
 			null,
-			PresetColour.DAMAGE_TYPE_PHYSICAL,
+			PresetColour.SPELL_SCHOOL_EARTH,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.STONE_SHELL,
@@ -3802,7 +3860,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.PHYSICAL_EARTH,
 			null,
-			PresetColour.DAMAGE_TYPE_PHYSICAL,
+			PresetColour.SPELL_SCHOOL_EARTH,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.STONE_SHELL,
@@ -3836,7 +3894,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.PHYSICAL_EARTH,
 			null,
-			PresetColour.DAMAGE_TYPE_PHYSICAL,
+			PresetColour.SPELL_SCHOOL_EARTH,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.STONE_SHELL,
@@ -3870,7 +3928,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.PHYSICAL_EARTH,
 			null,
-			PresetColour.DAMAGE_TYPE_PHYSICAL,
+			PresetColour.SPELL_SCHOOL_EARTH,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.STONE_SHELL,
@@ -3904,7 +3962,7 @@ public class Perk {
 			"impact",
 			PerkCategory.PHYSICAL_EARTH,
 			"perks/elemental/earth1",
-			PresetColour.DAMAGE_TYPE_PHYSICAL,
+			PresetColour.SPELL_SCHOOL_EARTH,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Integer>(Attribute.DAMAGE_PHYSICAL, 1),
 					new Value<Attribute, Integer>(Attribute.RESISTANCE_PHYSICAL, 1)),
@@ -3921,7 +3979,7 @@ public class Perk {
 			"building pressure",
 			PerkCategory.PHYSICAL_EARTH,
 			"perks/elemental/earth2",
-			PresetColour.DAMAGE_TYPE_PHYSICAL,
+			PresetColour.SPELL_SCHOOL_EARTH,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Integer>(Attribute.DAMAGE_PHYSICAL, 3),
 					new Value<Attribute, Integer>(Attribute.RESISTANCE_PHYSICAL, 3)),
@@ -3939,7 +3997,7 @@ public class Perk {
 			"seismic activity",
 			PerkCategory.PHYSICAL_EARTH,
 			"perks/elemental/earth3",
-			PresetColour.DAMAGE_TYPE_PHYSICAL,
+			PresetColour.SPELL_SCHOOL_EARTH,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Integer>(Attribute.DAMAGE_PHYSICAL, 6),
 					new Value<Attribute, Integer>(Attribute.RESISTANCE_PHYSICAL, 6)),
@@ -3956,7 +4014,7 @@ public class Perk {
 			"epicentre",
 			PerkCategory.PHYSICAL_EARTH,
 			"perks/elemental/earth4",
-			PresetColour.DAMAGE_TYPE_PHYSICAL,
+			PresetColour.SPELL_SCHOOL_EARTH,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Integer>(Attribute.DAMAGE_PHYSICAL, 20),
 					new Value<Attribute, Integer>(Attribute.RESISTANCE_PHYSICAL, 20),
@@ -3976,7 +4034,7 @@ public class Perk {
 			"Spell",
 			PerkCategory.PHYSICAL_WATER,
 			null,
-			PresetColour.DAMAGE_TYPE_COLD,
+			PresetColour.SPELL_SCHOOL_WATER,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.ICE_SHARD,
@@ -4010,7 +4068,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.PHYSICAL_WATER,
 			null,
-			PresetColour.DAMAGE_TYPE_COLD,
+			PresetColour.SPELL_SCHOOL_WATER,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.ICE_SHARD,
@@ -4044,7 +4102,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.PHYSICAL_WATER,
 			null,
-			PresetColour.DAMAGE_TYPE_COLD,
+			PresetColour.SPELL_SCHOOL_WATER,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.ICE_SHARD,
@@ -4078,7 +4136,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.PHYSICAL_WATER,
 			null,
-			PresetColour.DAMAGE_TYPE_COLD,
+			PresetColour.SPELL_SCHOOL_WATER,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.ICE_SHARD,
@@ -4112,7 +4170,7 @@ public class Perk {
 			"Spell",
 			PerkCategory.PHYSICAL_WATER,
 			null,
-			PresetColour.DAMAGE_TYPE_COLD,
+			PresetColour.SPELL_SCHOOL_WATER,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.RAIN_CLOUD,
@@ -4146,7 +4204,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.PHYSICAL_WATER,
 			null,
-			PresetColour.DAMAGE_TYPE_COLD,
+			PresetColour.SPELL_SCHOOL_WATER,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.RAIN_CLOUD,
@@ -4180,7 +4238,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.PHYSICAL_WATER,
 			null,
-			PresetColour.DAMAGE_TYPE_COLD,
+			PresetColour.SPELL_SCHOOL_WATER,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.RAIN_CLOUD,
@@ -4214,7 +4272,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.PHYSICAL_WATER,
 			null,
-			PresetColour.DAMAGE_TYPE_COLD,
+			PresetColour.SPELL_SCHOOL_WATER,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.RAIN_CLOUD,
@@ -4248,7 +4306,7 @@ public class Perk {
 			"Spell",
 			PerkCategory.PHYSICAL_WATER,
 			null,
-			PresetColour.DAMAGE_TYPE_COLD,
+			PresetColour.SPELL_SCHOOL_WATER,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.SOOTHING_WATERS,
@@ -4282,7 +4340,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.PHYSICAL_WATER,
 			null,
-			PresetColour.DAMAGE_TYPE_COLD,
+			PresetColour.SPELL_SCHOOL_WATER,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.SOOTHING_WATERS,
@@ -4316,7 +4374,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.PHYSICAL_WATER,
 			null,
-			PresetColour.DAMAGE_TYPE_COLD,
+			PresetColour.SPELL_SCHOOL_WATER,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.SOOTHING_WATERS,
@@ -4350,7 +4408,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.PHYSICAL_WATER,
 			null,
-			PresetColour.DAMAGE_TYPE_COLD,
+			PresetColour.SPELL_SCHOOL_WATER,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.SOOTHING_WATERS,
@@ -4384,7 +4442,7 @@ public class Perk {
 			"chill",
 			PerkCategory.PHYSICAL_WATER,
 			"perks/elemental/water1",
-			PresetColour.DAMAGE_TYPE_COLD,
+			PresetColour.SPELL_SCHOOL_WATER,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Integer>(Attribute.DAMAGE_ICE, 1),
 					new Value<Attribute, Integer>(Attribute.RESISTANCE_ICE, 1)),
@@ -4401,7 +4459,7 @@ public class Perk {
 			"frost",
 			PerkCategory.PHYSICAL_WATER,
 			"perks/elemental/water2",
-			PresetColour.DAMAGE_TYPE_COLD,
+			PresetColour.SPELL_SCHOOL_WATER,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Integer>(Attribute.DAMAGE_ICE, 3),
 					new Value<Attribute, Integer>(Attribute.RESISTANCE_ICE, 3)),
@@ -4419,7 +4477,7 @@ public class Perk {
 			"freeze",
 			PerkCategory.PHYSICAL_WATER,
 			"perks/elemental/water3",
-			PresetColour.DAMAGE_TYPE_COLD,
+			PresetColour.SPELL_SCHOOL_WATER,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Integer>(Attribute.DAMAGE_ICE, 6),
 					new Value<Attribute, Integer>(Attribute.RESISTANCE_ICE, 6)),
@@ -4436,7 +4494,7 @@ public class Perk {
 			"ice-age",
 			PerkCategory.PHYSICAL_WATER,
 			"perks/elemental/water4",
-			PresetColour.DAMAGE_TYPE_COLD,
+			PresetColour.SPELL_SCHOOL_WATER,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Integer>(Attribute.DAMAGE_ICE, 20),
 					new Value<Attribute, Integer>(Attribute.RESISTANCE_ICE, 20),
@@ -4456,7 +4514,7 @@ public class Perk {
 			"Spell",
 			PerkCategory.ARCANE_AIR,
 			null,
-			PresetColour.DAMAGE_TYPE_POISON,
+			PresetColour.SPELL_SCHOOL_AIR,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.POISON_VAPOURS,
@@ -4490,7 +4548,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.ARCANE_AIR,
 			null,
-			PresetColour.DAMAGE_TYPE_POISON,
+			PresetColour.SPELL_SCHOOL_AIR,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.POISON_VAPOURS,
@@ -4524,7 +4582,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.ARCANE_AIR,
 			null,
-			PresetColour.DAMAGE_TYPE_POISON,
+			PresetColour.SPELL_SCHOOL_AIR,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.POISON_VAPOURS,
@@ -4558,7 +4616,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.ARCANE_AIR,
 			null,
-			PresetColour.DAMAGE_TYPE_POISON,
+			PresetColour.SPELL_SCHOOL_AIR,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.POISON_VAPOURS,
@@ -4592,7 +4650,7 @@ public class Perk {
 			"Spell",
 			PerkCategory.ARCANE_AIR,
 			null,
-			PresetColour.DAMAGE_TYPE_POISON,
+			PresetColour.SPELL_SCHOOL_AIR,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.VACUUM,
@@ -4626,7 +4684,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.ARCANE_AIR,
 			null,
-			PresetColour.DAMAGE_TYPE_POISON,
+			PresetColour.SPELL_SCHOOL_AIR,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.VACUUM,
@@ -4660,7 +4718,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.ARCANE_AIR,
 			null,
-			PresetColour.DAMAGE_TYPE_POISON,
+			PresetColour.SPELL_SCHOOL_AIR,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.VACUUM,
@@ -4694,7 +4752,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.ARCANE_AIR,
 			null,
-			PresetColour.DAMAGE_TYPE_POISON,
+			PresetColour.SPELL_SCHOOL_AIR,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.VACUUM,
@@ -4728,7 +4786,7 @@ public class Perk {
 			"Spell",
 			PerkCategory.ARCANE_AIR,
 			null,
-			PresetColour.DAMAGE_TYPE_POISON,
+			PresetColour.SPELL_SCHOOL_AIR,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.PROTECTIVE_GUSTS,
@@ -4762,7 +4820,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.ARCANE_AIR,
 			null,
-			PresetColour.DAMAGE_TYPE_POISON,
+			PresetColour.SPELL_SCHOOL_AIR,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.PROTECTIVE_GUSTS,
@@ -4796,7 +4854,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.ARCANE_AIR,
 			null,
-			PresetColour.DAMAGE_TYPE_POISON,
+			PresetColour.SPELL_SCHOOL_AIR,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.PROTECTIVE_GUSTS,
@@ -4830,7 +4888,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.ARCANE_AIR,
 			null,
-			PresetColour.DAMAGE_TYPE_POISON,
+			PresetColour.SPELL_SCHOOL_AIR,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.PROTECTIVE_GUSTS,
@@ -4864,7 +4922,7 @@ public class Perk {
 			"breeze",
 			PerkCategory.ARCANE_AIR,
 			"perks/elemental/air1",
-			PresetColour.DAMAGE_TYPE_POISON,
+			PresetColour.SPELL_SCHOOL_AIR,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Integer>(Attribute.DAMAGE_POISON, 1),
 					new Value<Attribute, Integer>(Attribute.RESISTANCE_POISON, 1)),
@@ -4881,7 +4939,7 @@ public class Perk {
 			"gale",
 			PerkCategory.ARCANE_AIR,
 			"perks/elemental/air2",
-			PresetColour.DAMAGE_TYPE_COLD,
+			PresetColour.SPELL_SCHOOL_AIR,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Integer>(Attribute.DAMAGE_POISON, 3),
 					new Value<Attribute, Integer>(Attribute.RESISTANCE_POISON, 3)),
@@ -4899,7 +4957,7 @@ public class Perk {
 			"storm",
 			PerkCategory.ARCANE_AIR,
 			"perks/elemental/air3",
-			PresetColour.DAMAGE_TYPE_COLD,
+			PresetColour.SPELL_SCHOOL_AIR,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Integer>(Attribute.DAMAGE_POISON, 6),
 					new Value<Attribute, Integer>(Attribute.RESISTANCE_POISON, 6)),
@@ -4916,7 +4974,7 @@ public class Perk {
 			"supercell",
 			PerkCategory.ARCANE_AIR,
 			"perks/elemental/air4",
-			PresetColour.DAMAGE_TYPE_COLD,
+			PresetColour.SPELL_SCHOOL_AIR,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Integer>(Attribute.DAMAGE_POISON, 20),
 					new Value<Attribute, Integer>(Attribute.RESISTANCE_POISON, 20),
@@ -4937,7 +4995,7 @@ public class Perk {
 			"Spell",
 			PerkCategory.LUST,
 			null,
-			PresetColour.DAMAGE_TYPE_LUST,
+			PresetColour.SPELL_SCHOOL_ARCANE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.ARCANE_AROUSAL,
@@ -4971,7 +5029,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.LUST,
 			null,
-			PresetColour.DAMAGE_TYPE_LUST,
+			PresetColour.SPELL_SCHOOL_ARCANE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.ARCANE_AROUSAL,
@@ -5005,7 +5063,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.LUST,
 			null,
-			PresetColour.DAMAGE_TYPE_LUST,
+			PresetColour.SPELL_SCHOOL_ARCANE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.ARCANE_AROUSAL,
@@ -5039,7 +5097,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.LUST,
 			null,
-			PresetColour.DAMAGE_TYPE_LUST,
+			PresetColour.SPELL_SCHOOL_ARCANE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.ARCANE_AROUSAL,
@@ -5073,7 +5131,7 @@ public class Perk {
 			"Spell",
 			PerkCategory.LUST,
 			null,
-			PresetColour.DAMAGE_TYPE_LUST,
+			PresetColour.SPELL_SCHOOL_ARCANE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.TELEPATHIC_COMMUNICATION,
@@ -5107,7 +5165,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.LUST,
 			null,
-			PresetColour.DAMAGE_TYPE_LUST,
+			PresetColour.SPELL_SCHOOL_ARCANE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.TELEPATHIC_COMMUNICATION,
@@ -5141,7 +5199,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.LUST,
 			null,
-			PresetColour.DAMAGE_TYPE_LUST,
+			PresetColour.SPELL_SCHOOL_ARCANE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.TELEPATHIC_COMMUNICATION,
@@ -5175,7 +5233,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.LUST,
 			null,
-			PresetColour.DAMAGE_TYPE_LUST,
+			PresetColour.SPELL_SCHOOL_ARCANE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.TELEPATHIC_COMMUNICATION,
@@ -5209,7 +5267,7 @@ public class Perk {
 			"Spell",
 			PerkCategory.LUST,
 			null,
-			PresetColour.DAMAGE_TYPE_LUST,
+			PresetColour.SPELL_SCHOOL_ARCANE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.ARCANE_CLOUD,
@@ -5243,7 +5301,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.LUST,
 			null,
-			PresetColour.DAMAGE_TYPE_LUST,
+			PresetColour.SPELL_SCHOOL_ARCANE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.ARCANE_CLOUD,
@@ -5277,7 +5335,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.LUST,
 			null,
-			PresetColour.DAMAGE_TYPE_LUST,
+			PresetColour.SPELL_SCHOOL_ARCANE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.ARCANE_CLOUD,
@@ -5311,7 +5369,7 @@ public class Perk {
 			"Upgrade",
 			PerkCategory.LUST,
 			null,
-			PresetColour.DAMAGE_TYPE_LUST,
+			PresetColour.SPELL_SCHOOL_ARCANE,
 			Util.newHashMapOfValues(),
 			Util.newArrayListOfValues(""),
 			Spell.ARCANE_CLOUD,
@@ -5345,7 +5403,7 @@ public class Perk {
 			"arousal",
 			PerkCategory.LUST,
 			"perks/elemental/arcane1",
-			PresetColour.DAMAGE_TYPE_LUST,
+			PresetColour.SPELL_SCHOOL_ARCANE,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Integer>(Attribute.DAMAGE_LUST, 1),
 					new Value<Attribute, Integer>(Attribute.RESISTANCE_LUST, 1)),
@@ -5362,7 +5420,7 @@ public class Perk {
 			"passion",
 			PerkCategory.LUST,
 			"perks/elemental/arcane2",
-			PresetColour.DAMAGE_TYPE_LUST,
+			PresetColour.SPELL_SCHOOL_ARCANE,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Integer>(Attribute.DAMAGE_LUST, 3),
 					new Value<Attribute, Integer>(Attribute.RESISTANCE_LUST, 3)),
@@ -5380,7 +5438,7 @@ public class Perk {
 			"infatuation",
 			PerkCategory.LUST,
 			"perks/elemental/arcane3",
-			PresetColour.DAMAGE_TYPE_LUST,
+			PresetColour.SPELL_SCHOOL_ARCANE,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Integer>(Attribute.DAMAGE_LUST, 6),
 					new Value<Attribute, Integer>(Attribute.RESISTANCE_LUST, 6)),
@@ -5397,7 +5455,7 @@ public class Perk {
 			"nympholepsy",
 			PerkCategory.LUST,
 			"perks/elemental/arcane4",
-			PresetColour.DAMAGE_TYPE_LUST,
+			PresetColour.SPELL_SCHOOL_ARCANE,
 			Util.newHashMapOfValues(
 					new Value<Attribute, Integer>(Attribute.DAMAGE_LUST, 20),
 					new Value<Attribute, Integer>(Attribute.RESISTANCE_LUST, 20),
@@ -5473,11 +5531,12 @@ public class Perk {
 		for(Subspecies sub : Subspecies.values()) {
 			if(!resistancesAdded.contains(sub.getDamageMultiplier())) {
 				resistancesAdded.add(sub.getDamageMultiplier());
-				Subspecies subToUse = sub.getDamageMultiplier()==Subspecies.getMainSubspeciesOfRace(sub.getRace()).getDamageMultiplier()?Subspecies.getMainSubspeciesOfRace(sub.getRace()):sub;
+				boolean mainSubspecies = sub.getDamageMultiplier()==Subspecies.getMainSubspeciesOfRace(sub.getRace()).getDamageMultiplier();
+				Subspecies subToUse = mainSubspecies?Subspecies.getMainSubspeciesOfRace(sub.getRace()):sub;
 				
 				AbstractPerk racePerk = new AbstractPerk(20,
 						false,
-						Util.capitaliseSentence(subToUse.getName(null))+" knowledge",
+						Util.capitaliseSentence(mainSubspecies?sub.getRace().getName(false):subToUse.getName(null))+" knowledge",
 						PerkCategory.LUST,
 						null,
 						PresetColour.BASE_WHITE,
@@ -5486,7 +5545,7 @@ public class Perk {
 						null) {
 					@Override
 					public String getDescription(GameCharacter owner) {
-						return UtilText.parse(owner, "[npc.NameHasFull] advanced knowledge of "+subToUse.getNamePlural(null)+", and can therefore do increased damage when fighting them.");
+						return UtilText.parse(owner, "[npc.NameHasFull] advanced knowledge of "+(mainSubspecies?sub.getRace().getNamePlural(false):subToUse.getNamePlural(null))+", and can therefore do increased damage when fighting them.");
 					}
 					@Override
 					public String getSVGString(GameCharacter owner) {

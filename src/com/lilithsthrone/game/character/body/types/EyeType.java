@@ -2,12 +2,14 @@ package com.lilithsthrone.game.character.body.types;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.lilithsthrone.game.character.body.abstractTypes.AbstractEyeType;
 import com.lilithsthrone.game.character.body.valueEnums.EyeShape;
+import com.lilithsthrone.game.character.race.AbstractRace;
 import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.utils.Util;
 
@@ -321,6 +323,13 @@ public class EyeType {
 				}
 			}
 		}
+		
+		Collections.sort(allEyeTypes, (t1, t2)->
+			t1.getRace()==Race.NONE
+				?-1
+				:(t2.getRace()==Race.NONE
+					?1
+					:t1.getRace().getName(false).compareTo(t2.getRace().getName(false))));
 	}
 	
 	public static AbstractEyeType getEyeTypeFromId(String id) {
@@ -342,9 +351,9 @@ public class EyeType {
 		return allEyeTypes;
 	}
 	
-	private static Map<Race, List<AbstractEyeType>> typesMap = new HashMap<>();
+	private static Map<AbstractRace, List<AbstractEyeType>> typesMap = new HashMap<>();
 	
-	public static List<AbstractEyeType> getEyeTypes(Race r) {
+	public static List<AbstractEyeType> getEyeTypes(AbstractRace r) {
 		if(typesMap.containsKey(r)) {
 			return typesMap.get(r);
 		}

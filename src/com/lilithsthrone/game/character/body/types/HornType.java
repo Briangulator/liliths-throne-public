@@ -2,18 +2,20 @@ package com.lilithsthrone.game.character.body.types;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.lilithsthrone.game.character.body.abstractTypes.AbstractHornType;
+import com.lilithsthrone.game.character.race.AbstractRace;
 import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.utils.Util;
 
 /**
  * 
  * @since 0.1.0
- * @version 0.3.1
+ * @version 0.3.9.1
  * @author Innoxia
  */
 public class HornType {
@@ -195,6 +197,13 @@ public class HornType {
 				}
 			}
 		}
+		
+		Collections.sort(allHornTypes, (t1, t2)->
+			t1.getRace()==Race.NONE
+				?-1
+				:(t2.getRace()==Race.NONE
+					?1
+					:t1.getRace().getName(false).compareTo(t2.getRace().getName(false))));
 	}
 	
 	public static AbstractHornType getHornTypeFromId(String id) {
@@ -210,8 +219,8 @@ public class HornType {
 		return allHornTypes;
 	}
 	
-	private static Map<Race, List<AbstractHornType>> typesMap = new HashMap<>();
-	public static List<AbstractHornType> getHornTypes(Race r) {
+	private static Map<AbstractRace, List<AbstractHornType>> typesMap = new HashMap<>();
+	public static List<AbstractHornType> getHornTypes(AbstractRace r) {
 		if(typesMap.containsKey(r)) {
 			return typesMap.get(r);
 		}

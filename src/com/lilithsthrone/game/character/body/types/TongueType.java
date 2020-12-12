@@ -2,12 +2,14 @@ package com.lilithsthrone.game.character.body.types;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.lilithsthrone.game.character.body.abstractTypes.AbstractTongueType;
 import com.lilithsthrone.game.character.body.valueEnums.TongueModifier;
+import com.lilithsthrone.game.character.race.AbstractRace;
 import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.utils.Util;
 
@@ -248,6 +250,13 @@ public class TongueType {
 				}
 			}
 		}
+		
+		Collections.sort(allTongueTypes, (t1, t2)->
+			t1.getRace()==Race.NONE
+				?-1
+				:(t2.getRace()==Race.NONE
+					?1
+					:t1.getRace().getName(false).compareTo(t2.getRace().getName(false))));
 	}
 	
 	public static AbstractTongueType getTongueTypeFromId(String id) {
@@ -273,9 +282,9 @@ public class TongueType {
 		return allTongueTypes;
 	}
 	
-	private static Map<Race, List<AbstractTongueType>> typesMap = new HashMap<>();
+	private static Map<AbstractRace, List<AbstractTongueType>> typesMap = new HashMap<>();
 	
-	public static List<AbstractTongueType> getTongueTypes(Race r) {
+	public static List<AbstractTongueType> getTongueTypes(AbstractRace r) {
 		if(typesMap.containsKey(r)) {
 			return typesMap.get(r);
 		}

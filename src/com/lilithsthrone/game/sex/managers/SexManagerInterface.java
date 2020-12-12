@@ -14,7 +14,7 @@ import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.fetishes.Fetish;
 import com.lilithsthrone.game.character.npc.NPC;
-import com.lilithsthrone.game.character.race.Race;
+import com.lilithsthrone.game.character.race.AbstractRace;
 import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.InventorySlot;
@@ -39,7 +39,7 @@ import com.lilithsthrone.world.population.PopulationType;
 
 /**
  * @since 0.1.0
- * @version 0.3.5.5
+ * @version 0.3.9.1
  * @author Innoxia
  */
 public interface SexManagerInterface {
@@ -106,6 +106,15 @@ public interface SexManagerInterface {
 	public default boolean isWashingScene() {
 		return false;
 	}
+
+	/**
+	 * Being hidden restricts the character's ability to end sex, and they can only use 'self' sex actions.<br/>
+	 * <b>This should only ever be applied to spectators, as it makes no sense otherwise.</b>
+	 * @return true if the character is considered to be out of sight and hidden in this sex scene.
+	 */
+	public default boolean isHidden(GameCharacter character) {
+		return false;
+	}
 	
 	public default SexType getForeplayPreference(GameCharacter character, GameCharacter targetedCharacter) {
 		return character.getForeplayPreference(targetedCharacter);
@@ -116,6 +125,9 @@ public interface SexManagerInterface {
 	}
 
 	public default SexControl getSexControl(GameCharacter character) {
+		if(isHidden(character)) {
+			return SexControl.SELF;
+		}
 		if(Main.sex.isDom(character)) {
 			return SexControl.FULL;
 		} else {
@@ -143,7 +155,7 @@ public interface SexManagerInterface {
 		return false;
 	}
 	
-	public default boolean isSlotAvailable(SexSlot slot) {
+	public default boolean isSlotAvailable(GameCharacter character, SexSlot slot) {
 		return true;
 	}
 	
@@ -334,13 +346,10 @@ public interface SexManagerInterface {
 	}
 	
 	public default List<CoverableArea> getAdditionalAreasToExposeDuringSex(GameCharacter performer, GameCharacter target) {
-		if(performer.equals(target)) {
+		if((performer.equals(target) || Main.sex.isConsensual()) && (target.hasBreasts() || target.isFeminine())) {
 			return Util.newArrayListOfValues(CoverableArea.NIPPLES);
-		} else {
-			if(Main.sex.isConsensual() || target.hasBreasts()) {
-				return Util.newArrayListOfValues(CoverableArea.NIPPLES);
-			}
 		}
+		
 		return new ArrayList<>();
 	}
 	
@@ -386,7 +395,7 @@ public interface SexManagerInterface {
 			subspeciesSet.addAll(pop.getSpecies().keySet());
 		}
 		if(!subspeciesSet.isEmpty()) {
-			List<Race> racesPresent = new ArrayList<>();
+			List<AbstractRace> racesPresent = new ArrayList<>();
 			for(Subspecies species : subspeciesSet) {
 				if(!racesPresent.contains(species.getRace())) {
 					racesPresent.add(species.getRace());

@@ -2,12 +2,14 @@ package com.lilithsthrone.game.character.body.types;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.lilithsthrone.game.character.body.abstractTypes.AbstractAnusType;
 import com.lilithsthrone.game.character.body.valueEnums.OrificeModifier;
+import com.lilithsthrone.game.character.race.AbstractRace;
 import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.utils.Util;
 
@@ -190,6 +192,13 @@ public class AnusType {
 				}
 			}
 		}
+		
+		Collections.sort(allAnusTypes, (t1, t2)->
+			t1.getRace()==Race.NONE
+				?-1
+				:(t2.getRace()==Race.NONE
+					?1
+					:t1.getRace().getName(false).compareTo(t2.getRace().getName(false))));
 	}
 	
 	public static AbstractAnusType getAnusTypeFromId(String id) {
@@ -209,8 +218,8 @@ public class AnusType {
 		return allAnusTypes;
 	}
 	
-	private static Map<Race, List<AbstractAnusType>> typesMap = new HashMap<>();
-	public static List<AbstractAnusType> getAnusTypes(Race r) {
+	private static Map<AbstractRace, List<AbstractAnusType>> typesMap = new HashMap<>();
+	public static List<AbstractAnusType> getAnusTypes(AbstractRace r) {
 		if(typesMap.containsKey(r)) {
 			return typesMap.get(r);
 		}

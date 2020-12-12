@@ -2,17 +2,19 @@ package com.lilithsthrone.game.character.body.types;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.lilithsthrone.game.character.body.abstractTypes.AbstractHairType;
+import com.lilithsthrone.game.character.race.AbstractRace;
 import com.lilithsthrone.game.character.race.Race;
 import com.lilithsthrone.utils.Util;
 
 /**
  * @since 0.1.83
- * @version 0.3.8.2
+ * @version 0.3.9.1
  * @author Innoxia
  */
 public class HairType {
@@ -275,6 +277,13 @@ public class HairType {
 				}
 			}
 		}
+
+		Collections.sort(allHairTypes, (t1, t2)->
+			t1.getRace()==Race.NONE
+				?-1
+				:(t2.getRace()==Race.NONE
+					?1
+					:t1.getRace().getName(false).compareTo(t2.getRace().getName(false))));
 	}
 	
 	public static AbstractHairType getHairTypeFromId(String id) {
@@ -296,9 +305,9 @@ public class HairType {
 		return allHairTypes;
 	}
 	
-	private static Map<Race, List<AbstractHairType>> typesMap = new HashMap<>();
+	private static Map<AbstractRace, List<AbstractHairType>> typesMap = new HashMap<>();
 	
-	public static List<AbstractHairType> getHairTypes(Race r) {
+	public static List<AbstractHairType> getHairTypes(AbstractRace r) {
 		if(typesMap.containsKey(r)) {
 			return typesMap.get(r);
 		}
